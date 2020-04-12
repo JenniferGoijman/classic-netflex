@@ -1,0 +1,80 @@
+.background {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.377)), url("../../../assets/img/background.jpg") no-repeat ;
+  height: 100vh;
+  font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  header {
+    height: 15vh;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      width: 165px;
+      filter: contrast(1.5);
+      cursor: pointer;
+    }
+
+    .btnLogin {
+      background-color: #e50914;
+      color: white;
+      width: 120px;
+      border-radius: 4px;
+      text-align: center;
+      padding: 8px 8px;
+      cursor: pointer;
+    }
+  }
+
+  main {
+    color: white;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-weight: 500;
+      font-size: 3.125rem;
+      max-width: 700px;
+      text-align: center;
+      color: white;
+      margin: 0;
+    }
+    h2 {
+      font-weight: 300;
+      font-size: 2rem;
+      color: white;
+      margin: 0;
+    }
+    h3 {
+      font-weight: 300;
+      color: white;
+    }
+
+    .inputButton {
+      margin: 20px 0;
+      height: 55px;
+      display: inline-flex;
+      font-size: 25px;
+      
+      input {
+        height: 55px;
+        width: 550px;
+        padding-left: 10px;
+      }
+   
+      .btnTryNow {
+        background-color: #e50914;
+        color: white;
+        height: 55px;
+        width: 270px;
+        border-radius: 0 4px 4px 0;
+        text-align: center;
+        padding: 13px 28px;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="background">
+    <header>
+        <img src="../../../assets/img/logo.png" routerLink="" alt="">
+    </header>
+    <main>
+        <div class="login">
+            <mat-card>
+                <mat-card-title>Iniciar sesión</mat-card-title>
+                <mat-card-content>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <p>
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="Correo electrónico" formControlName="email">
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field>
+                                <input type="password" matInput placeholder="Contraseña" formControlName="password">
+                            </mat-form-field>
+                        </p>
+                        <p *ngIf="error" class="error">
+                            {{ error }}
+                        </p>
+                        <div class="button">
+                            <p class="btnLogin" type="submit" routerLink="/login">Iniciar sesión</p>
+                        </div>
+                        <div>¿Todavía sin Classic Netflex? <a href="">Suscríbete ya.</a></div>
+                    </form>                    
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </main>
+</div>
