@@ -9,26 +9,32 @@ const {
     jwt_secret,
     API_URL
 } = require('../config/config.json')[env];
-const transporter = require('../config/nodemailer')
+const transporter = require('../config/nodemailer');
 const UserController = {
     async register(req, res) {
         try {
             const password = await bcrypt.hash(req.body.password, 9);
             const email = req.body.email
-            
-            const emailToken = jwt.sign({ email }, jwt_secret, { expiresIn: '48h' });
+
+            const emailToken = jwt.sign({
+                email
+            }, jwt_secret, {
+                expiresIn: '48h'
+            });
             const url = API_URL + '/users/confirm/' + emailToken;
             await transporter.sendMail({
                 to: email,
-                subject: 'Confirme su registro en Armería Funko',
+                subject: 'Confirme su registro en Classic Netflex',
                 html: `
-                <h3>Bienvenido ${req.body.username} a nuestra Armería de Funkos, estás a un paso de registrarte</h3>
+                <h3>Bienvenido/a ${req.body.name} ${req.body.surname} a Classic Netflex!</h3>
+                <h2>Estás a un paso de registrarte</h2>
                 <a href="${url}">Click aquí para confirmar tu registro</a>
                 Este enlace caduca en 48 horas.
                 `
             });
             const user = await User.create({
-                username: req.body.username,
+                name: req.body.name,
+                surname: req.body.surname,
                 email,
                 password,
                 confirmed: false,
@@ -50,40 +56,51 @@ const UserController = {
             const emailToken = req.params.emailToken;
             const payload = jwt.verify(emailToken, jwt_secret);
             const email = payload.email;
-             await User.update({ 
+            await User.update({
                 confirmed: true
-            }, { where: { email } });
-           const user= await User.findOne({where:{email}});
+            }, {
+                where: {
+                    email
+                }
+            });
+            const user = await User.findOne({
+                where: {
+                    email
+                }
+            });
             // Mongoose findOneAndUpdate
             // const user = await User.findOneAndUpdate({email},{confirmed:true})
             const authToken = jwt.sign({
                 id: user.id
             }, jwt_secret);
             await Token.create({
-                token:authToken,
+                token: authToken,
                 UserId: user.id
             });
             /* MongoDB
             user.tokens.push(authToken);
             await user.save();
             */
-            res.redirect('http://localhost:4200/user/confirmado/'+authToken);
+            res.redirect('http://localhost:4200/user/confirmado/' + authToken);
 
         } catch (error) {
             console.error(error)
-            res.status(500).send({message:'Ha habido un problema al confirmar el usuario',error})
+            res.status(500).send({
+                message: 'Ha habido un problema al confirmar el usuario',
+                error
+            })
         }
     },
     async login(req, res) {
         try {
             const user = await User.findOne({
                 where: {
-                    username: req.body.username
+                    email: req.body.email
                 }
             })
             if (!user) {
                 return res.status(400).send({
-                    message: 'Usuario o contraseña incorrectas'
+                    message: 'Email o contraseña incorrectas'
                 })
             }
             if (!user.confirmed) {
@@ -94,7 +111,7 @@ const UserController = {
             const isMatch = await bcrypt.compare(req.body.password, user.password);
             if (!isMatch) {
                 return res.status(400).send({
-                    message: 'Usuario o contraseña incorrectas'
+                    message: 'Email o contraseña incorrectas'
                 })
             }
             const token = jwt.sign({
@@ -106,7 +123,7 @@ const UserController = {
             });
             //status es 200 by default
             res.send({
-                message: 'Bienvenid@ ' + user.username,
+                message: 'Bienvenid@ ' + user.name + ' ' + user.surname,
                 user,
                 token
             })
