@@ -1,0 +1,111 @@
+.background {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.377)), url("../../../../assets/img/background.jpg") no-repeat;
+    height: 100vh;
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+    header {
+      height: 15vh;
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      img {
+        width: 165px;
+        filter: contrast(1.5);
+        cursor: pointer;
+      }
+    }
+  
+    main {
+      color: white;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      .login {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 450px;
+        height: 550px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        mat-card {
+          background-color: transparent;
+          padding: 0;
+          width: fit-content;
+  
+          mat-card-title {
+              color: white;
+              display: unset;
+              font-size: 32px;
+          }
+        }
+  
+        p {
+          background-color: grey;
+          border-radius: 5px;
+          padding: 0 10px;
+          width: 315px;
+          height: 50px;
+          margin-top: 25px;
+  
+          input {
+            padding-left: 10px;
+          }
+        }
+  
+        .btnLogin {
+          background-color: #e50914;
+          color: white;
+          border-radius: 4px;
+          text-align: center;
+          padding: 15px 8px;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+  
+        div {
+            color: white;
+            a {
+                text-decoration: none;
+                color: white;
+            }
+        }
+      }
+    }
+  
+    :host {
+      display: flex;
+      justify-content: center;
+      margin: 100px 0px;
+    }
+  
+    .mat-form-field {
+      width: 100%;
+      min-width: 300px;
+    }
+  
+    mat-card-title,
+    mat-card-content {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .error {
+      padding: 16px;
+      width: 300px;
+      color: white;
+      background-color: red;
+    }
+  
+    .button {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  
