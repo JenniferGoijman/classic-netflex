@@ -11,7 +11,6 @@ import { RegisterComponent } from './container/user/register/register.component'
 import { ConfirmedComponent } from './container/user/confirmed/confirmed.component';
 import { MoviesComponent } from './container/movies/movies.component';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
@@ -21,6 +20,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from '@angular/material/input';
 import { MatVideoModule } from 'mat-video';
 registerLocaleData(es);
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,13 +39,14 @@ registerLocaleData(es);
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
     NgZorroAntdModule,
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatVideoModule
+    MatVideoModule,
+    MatTableModule,
+    MatTableDataSource,
+    MatPaginatorModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]
