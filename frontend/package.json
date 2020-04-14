@@ -26,7 +26,9 @@
     "angular-bootstrap-md": "^9.0.1",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.7",
+    "mat-video": "^2.8.0",
     "ng-zorro-antd": "^8.5.2",
+    "ngx-image-zoom": "^0.6.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

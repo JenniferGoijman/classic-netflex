@@ -56,6 +56,7 @@ const UserController = {
             const emailToken = req.params.emailToken;
             const payload = jwt.verify(emailToken, jwt_secret);
             const email = payload.email;
+            console.log("Console:", emailToken, payload, email)
             await User.update({
                 confirmed: true
             }, {

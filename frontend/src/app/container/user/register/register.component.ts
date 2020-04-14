@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
     surname: new FormControl(''),
@@ -24,7 +23,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   
   submit() {
     if (this.form.valid) {
