@@ -56,7 +56,7 @@
         position: absolute;
         float: left;
         color: white;
-        margin: 20px 20px;
+        margin: 20px;
       }
 
       .divMovies {
@@ -139,6 +139,7 @@
         padding: 20px;
         text-align: center;
         z-index: 1;
+        cursor: pointer;
 
         &:nth-of-type(1) {
           top: 0;
@@ -158,6 +159,11 @@
 
     }
   }
+}
+
+mat-paginator{
+  background-color: red;
+  height: 100px;
 }
 
 @media only screen and (max-width: 600px) {

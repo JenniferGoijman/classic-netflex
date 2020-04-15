@@ -3,7 +3,7 @@ import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms'
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+//import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(public userService: UserService, public router: Router,
-    public notification:NzNotificationService) {
+    //public notification:NzNotificationService
+  ) {
   }
 
   ngOnInit(): void {
@@ -33,17 +34,13 @@ export class LoginComponent implements OnInit {
           (res: HttpResponse<any>) => {
             localStorage.setItem('authToken', res['token']);
             this.userService.setUser(res['user']);
-            this.notification.success(
-              'Login realizado con éxito',
-              res['message']
-            );
+            this.userService.setToken(res['token']);
+            localStorage.setItem('authToken', res['token']);
+            //this.notification.success('Login realizado con éxito', res['message']);
           },
           (error: HttpErrorResponse) => {
             console.log(error);
-            this.notification.error(
-              'Problema al intentar conectarte',
-              error['error']['message']
-            );
+            //this.notification.error('Problema al intentar conectarte', error['error']['message']);
           }
         )
       this.form.reset();

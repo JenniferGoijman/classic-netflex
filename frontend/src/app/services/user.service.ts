@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private user: object = {};
+  private token: string = "";
   constructor(public httpClient: HttpClient) { }
 
   register(user: object): Observable<any> {
@@ -15,6 +16,12 @@ export class UserService {
   }
   login(user: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users/login', user);
+  }
+  setToken(token: string): void {
+    this.token = token;
+  }
+  getToken(): string {
+    return this.token;
   }
   setUser(user: object): void {
     this.user = user;

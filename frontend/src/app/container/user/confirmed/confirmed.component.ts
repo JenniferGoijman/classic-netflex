@@ -16,10 +16,10 @@ export class ConfirmedComponent implements OnInit {
 
   ngOnInit(): void { //CHEQUEAR
     const token = this.route.snapshot.params.token;
-    this.userService.getUserInfo(token)
-      .subscribe(
-        res => this.userService.setUser(res)
-      )
+    // this.userService.getUserInfo(token)
+    //   .subscribe(
+    //     res => this.userService.setUser(res)
+    //   )
     localStorage.setItem('authToken', token);
     this.userService.confirm(token)
       .subscribe(
