@@ -1,11 +1,12 @@
 .background {
   background-color: rgba(14, 14, 14);
-  height: 200vh;
+  height: fit-content;
   font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   header {
     background-color: transparent;
     height: 15vh;
+    width: 100%;
     padding: 15px 50px;
     display: flex;
     justify-content: space-between;
@@ -16,6 +17,16 @@
     img {
       width: 130px;
       filter: contrast(1.5);
+      cursor: pointer;
+    }
+
+    .btnLogin {
+      background-color: #e50914;
+      color: white;
+      width: 120px;
+      border-radius: 4px;
+      text-align: center;
+      padding: 8px 8px;
       cursor: pointer;
     }
   }
@@ -50,121 +61,105 @@
       z-index: 99999;
       background-color: rgba(14, 14, 14);
 
-      h1 {
+      h3 {
         background-color: transparent;
         z-index: 99999;
         position: absolute;
         float: left;
         color: white;
-        margin: 20px;
+        margin: 0 0 0 25px;
+        font-weight: 500;
       }
 
-      .divMovies {
+      .divPopularMovies {
         display: flex;
         flex-direction: row;
-        margin: 60px 20px;
+        margin: 20px 0;
         background-color: rgba(14, 14, 14);
 
-        .row {
-          width: 150px;
-          margin: 10px 100px 0 10px;
-          z-index: 99;
-        }
+        $itemGrow: 1.2;
+        $duration: 250ms;
 
-        .row:hover {
-          transform: scale(1.5);
-          z-index: 999;
+        .wrapper {
+          display: grid;
+          grid-template-columns: repeat(3, 100%);
+          overflow: hidden;
+          scroll-behavior: smooth;
+          margin-left: 25px;
 
-          .card-title {
-            white-space: normal;
+          section {
+            width: 100%;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            margin: 20px 0;
+
+            .item {
+              padding: 0 2px;
+              transition: $duration all;
+
+              .card-title {
+                position: absolute;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+                color: white;
+                height: 150px;
+                width: 250px;
+                padding: 2px 5px;
+                white-space: normal;
+                overflow: hidden;
+              }
+
+              img {
+                width: 250px;
+                height: 140px
+              }
+
+              &:hover {
+                margin: 0 40px;
+                transform: scale(1.2);
+              }
+
+            }
+
+            a {
+              position: absolute;
+              color: #fff;
+              text-decoration: none;
+              font-size: 6em;
+              background: rgb(0, 0, 0);
+              width: 80px;
+              padding: 20px;
+              text-align: center;
+              z-index: 1;
+              cursor: pointer;
+
+              &:nth-of-type(1) {
+                top: 0;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+              }
+
+              &:nth-of-type(2) {
+                top: 0;
+                bottom: 0;
+                right: 0;
+                background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+              }
+            }
           }
         }
       }
     }
   }
-
-  $itemGrow: 1.2;
-  $duration: 250ms;
-
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 100%);
-    overflow: hidden;
-    scroll-behavior: smooth;
-    margin-left: 25px;
-
-    section {
-      width: 100%;
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(5, auto);
-      margin: 20px 0;
-
-      .item {
-        padding: 0 2px;
-        transition: $duration all;
-        
-        .card-title {
-          position: absolute;
-          background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-          color: white;
-          height: 150px;
-          width: 250px;
-          padding: 2px 5px;
-          white-space: normal;
-          overflow: hidden;
-        }
-        img {
-          width: 250px;
-          height:140px
-        }
-
-        &:hover {
-          margin: 0 40px;
-          transform: scale(1.2);
-        }
-
-      }
-
-      a {
-        position: absolute;
-        color: #fff;
-        text-decoration: none;
-        font-size: 6em;
-        background: rgb(0, 0, 0);
-        width: 80px;
-        padding: 20px;
-        text-align: center;
-        z-index: 1;
-        cursor: pointer;
-
-        &:nth-of-type(1) {
-          top: 0;
-          bottom: 0;
-          left: 0;
-          background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-        }
-
-        &:nth-of-type(2) {
-          top: 0;
-          bottom: 0;
-          right: 0;
-          background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-        }
-
-      }
-
-    }
-  }
 }
 
-mat-paginator{
-  background-color: red;
+mat-paginator {
   height: 100px;
 }
 
 @media only screen and (max-width: 600px) {
   a.arrow__btn {
-    display:none;
+    display: none;
   }
 }

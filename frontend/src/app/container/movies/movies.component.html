@@ -1,18 +1,18 @@
 <div class="background">
   <header>
     <img src="../../../assets/img/logo.png" routerLink="" alt="">
-    <!-- <p class="btnLogin" routerLink="/login">Iniciar sesión</p> -->
+    <p class="btnLogin" routerLink="/login">Iniciar sesión</p>
   </header>
   <main>
     <div class="video-container">
-      <!-- <iframe allowFullScreen='allowFullScreen'
-                src="https://www.youtube.com/embed/yDJIcYE32NU?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe> -->
+      <iframe allowFullScreen='allowFullScreen' 
+      [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailer)" 
+      frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
     <div class="movies-container">
-      <h1>Populares en Classic Netflex</h1>
-      <div class="divMovies">
+      <h3>Populares en Classic Netflex</h3>
+      <div class="divPopularMovies">
         <div class="wrapper">
           <section id="section1">
             <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
