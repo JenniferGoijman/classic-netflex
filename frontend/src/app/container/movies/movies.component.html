@@ -13,26 +13,19 @@
     <div class="movies-container">
       <h1>Populares en Classic Netflex</h1>
       <div class="divMovies">
-        <!-- <div class="row" *ngFor="let movie of this.movies['results'] | async">
-                    <span class="card-title">{{movie.title}}</span>
-                    <img src="http://image.tmdb.org/t/p/w300/{{movie.backdrop_path}}" alt="" srcset="">
-                </div> -->
-      </div>
-
-      <div class="wrapper">
-        <section id="section1">
-          <a class="arrow__btn" (click)="previousPage()"
-          [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
-          <div class="item" *ngFor="let card of obs | async">
-            <img src="{{card.image}}" /> 
-          </div>
-          <a class="arrow__btn" (click)="nextPage()"
-          [style.display]="!this.hasNextPage?'none':'block'">›</a>
-        </section>
+        <div class="wrapper">
+          <section id="section1">
+            <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
+            <div class="item" *ngFor="let movie of obs | async">
+              <span class="card-title">{{movie.title}}</span>
+              <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
+            </div>
+            <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
+          </section>
+        </div>
+        <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+          [style.display]="'none'"></mat-paginator>
       </div>
     </div>
-    <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex"
-    [pageSize]="pageSize" [style.display]="'none'"></mat-paginator>
   </main>
 </div>
-<!-- {{this.movies | json}} -->

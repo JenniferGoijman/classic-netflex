@@ -69,21 +69,6 @@
           width: 150px;
           margin: 10px 100px 0 10px;
           z-index: 99;
-
-          img {
-            width: 250px;
-          }
-
-          .card-title {
-            position: absolute;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-            color: white;
-            height: 150px;
-            width: 250px;
-            padding: 2px 5px;
-            white-space: normal;
-            overflow: hidden;
-          }
         }
 
         .row:hover {
@@ -118,8 +103,20 @@
       .item {
         padding: 0 2px;
         transition: $duration all;
+        
+        .card-title {
+          position: absolute;
+          background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          color: white;
+          height: 150px;
+          width: 250px;
+          padding: 2px 5px;
+          white-space: normal;
+          overflow: hidden;
+        }
         img {
           width: 250px;
+          height:140px
         }
 
         &:hover {
