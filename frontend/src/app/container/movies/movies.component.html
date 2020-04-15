@@ -1,14 +1,15 @@
 <div class="background">
   <header>
-    <img src="../../../assets/img/logo.png" routerLink="" alt="">
-    <p class="btnLogin" routerLink="/login">Iniciar sesión</p>
+    <img src="../../../assets/img/logo.png" class="logo" routerLink="" alt="">
+    <div class="headerRight">
+      <img src="../../../assets/img/cart.png" class="btnCart" alt="Carrito">
+      <p class="btnLogin" routerLink="/login">Iniciar sesión</p>
+    </div>
   </header>
   <main>
     <div class="video-container">
-      <iframe allowFullScreen='allowFullScreen' 
-      [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailer)" 
-      frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      <!-- <iframe allowFullScreen='allowFullScreen' [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailer)"
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe> -->
     </div>
     <div class="movies-container">
       <h3>Populares en Classic Netflex</h3>
@@ -17,7 +18,7 @@
           <section id="section1">
             <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
             <div class="item" *ngFor="let movie of obs | async">
-              <span class="card-title">{{movie.title}}</span>
+              <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
               <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
             </div>
             <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
@@ -25,6 +26,26 @@
         </div>
         <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
           [style.display]="'none'"></mat-paginator>
+      </div>
+      <div *ngIf="infoMovie" class="infoMovie">
+        <div class="divBtnCerrar" (click)="closeDetails()">
+          <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
+        <div class="info">
+          <h1>{{infoMovie.title}}</h1>
+          <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
+          <div>{{infoMovie.overview}}</div>
+          <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>
+          <div>Géneros: {{infoMovie.genres[0].name}}
+          </div>
+          <p class="btnWantIt" (click)="addToCart(infoMovie.id)">La quiero ya!</p>
+        </div>
+        <div class="trailer">
+        </div>
+        <div class="trailer-container">
+          <iframe width="711" height="400" [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailerDetails)"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </main>

@@ -29,6 +29,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
   public allMovies;
   Movie = []
   showTrailer;
+  showTrailerDetails;
+  public infoMovie;
 
   constructor(public movieService: MovieService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -47,10 +49,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
         this.movieService.getTrailer(this.allMovies[0].id)
           .subscribe(res => {
             this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-            console.log(this.showTrailer)
           }, error => console.error(error));
-
-        console.log(this.allMovies[0].id)
         this.obs = this.dataSource.connect();
       },
         error => console.error(error));
@@ -79,4 +78,31 @@ export class MoviesComponent implements OnInit, OnDestroy {
       this.dataSource.disconnect();
     }
   }
+
+  getMovieById(movieId) {
+    console.log(movieId);
+    this.movieService.getById(movieId)
+      .subscribe(res => {
+        this.infoMovie = res;
+        console.log(this.infoMovie);
+        this.movieService.getTrailer(movieId)
+          .subscribe(res => {
+            this.showTrailerDetails = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
+          }, error => console.error(error));
+      },
+        error => console.error(error));
+  }
+
+  closeDetails() {
+    this.infoMovie = '';
+    this.showTrailerDetails = '';
+  }
+
+  time_convert(num) {
+    const hours = Math.floor(num / 60);
+    const minutes = num % 60;
+    return `${hours} h ${minutes} min`;
+  }
+
+  addToCart(movieId) {}
 }
