@@ -2,14 +2,16 @@
   <header>
     <img src="../../../assets/img/logo.png" class="logo" routerLink="" alt="">
     <div class="headerRight">
-      <img src="../../../assets/img/cart.png" class="btnCart" alt="Carrito">
+      <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
+        <img src="../../../assets/img/cart.png" class="btnCart" alt="Carrito"></span>
+
       <p class="btnLogin" routerLink="/login">Iniciar sesión</p>
     </div>
   </header>
   <main>
     <div class="video-container">
-      <!-- <iframe allowFullScreen='allowFullScreen' [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailer)"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe> -->
+      <iframe allowFullScreen='allowFullScreen' [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailer)"
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
     <div class="movies-container">
       <h3>Populares en Classic Netflex</h3>
@@ -37,7 +39,7 @@
           <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>
           <div>Géneros: {{infoMovie.genres[0].name}}
           </div>
-          <p class="btnWantIt" (click)="addToCart(infoMovie.id)">La quiero ya!</p>
+          <p class="btnWantIt" (click)="addCart(infoMovie)">La quiero ya!</p>
         </div>
         <div class="trailer">
         </div>

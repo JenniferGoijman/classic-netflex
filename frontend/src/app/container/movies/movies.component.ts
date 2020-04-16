@@ -4,6 +4,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CartService } from 'src/app/services/cart.service';
+
 export interface Movie {
   id: number;
   title: string;
@@ -34,7 +36,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   constructor(public movieService: MovieService,
     private changeDetectorRef: ChangeDetectorRef,
-    public sanitizer: DomSanitizer) { }
+    public sanitizer: DomSanitizer,
+    public cartService: CartService) { }
 
   ngOnInit(): void {
     this.movieService.getPopular()
@@ -104,5 +107,9 @@ export class MoviesComponent implements OnInit, OnDestroy {
     return `${hours} h ${minutes} min`;
   }
 
-  addToCart(movieId) {}
+  addCart(movie) {
+    if (this.cartService.moviesInCart.find((m)=>m.id===movie.id))return;
+    this.cartService.moviesInCart.push(movie);
+    localStorage.setItem('cart', JSON.stringify(this.cartService.moviesInCart))
+  }
 }

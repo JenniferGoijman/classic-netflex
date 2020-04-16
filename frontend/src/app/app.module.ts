@@ -19,7 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from '@angular/material/input';
 import { MatVideoModule } from 'mat-video';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ registerLocaleData(es);
     MatCardModule,
     MatInputModule,
     MatVideoModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatBadgeModule
   ],
   //providers: [{provide: NZ_I18N, useValue: es_ES  }],
   bootstrap: [AppComponent]
