@@ -7,6 +7,7 @@ import { RegisterComponent } from './container/user/register/register.component'
 import { ConfirmedComponent } from './container/user/confirmed/confirmed.component';
 import { MoviesComponent } from './container/movies/movies.component';
 import { ProfileComponent } from './container/profile/profile.component';
+import { CartComponent } from './container/cart/cart.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'users/confirm/:token', component: ConfirmedComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

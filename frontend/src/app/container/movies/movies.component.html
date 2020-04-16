@@ -3,7 +3,7 @@
     <img src="../../../assets/img/logo.png" class="logo" routerLink="" alt="">
     <div class="headerRight">
       <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
-        <img src="../../../assets/img/cart.png" class="btnCart" alt="Carrito"></span>
+        <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
       <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
         {{userService['user']['surname']}}</p>
       <mat-menu #menu="matMenu">

@@ -1,8 +1,29 @@
 <div class="background">
-    <h1>Cuenta</h1>
-    <h3>Datos Personales</h3>
-    <p>Nombre</p>
-    <p>Apellido</p>
-    <p>Email</p>
-    <h3>Pedidos</h3>
+    <div class="container">
+        <div class="profile">
+            <h1>Cuenta</h1>
+            <hr>
+            <h3>Datos Personales</h3>
+            <div class="col">
+                <p>Nombre: {{userService['user']['name']}}</p>
+            </div>
+            <div class="col">
+                <p>Apellido: {{userService['user']['surname']}}</p>
+            </div>
+            <div class="col">
+                <p>Email: {{userService['user']['email']}}</p>
+                <p>Cambiar email de la cuenta</p>
+            </div>
+            <div class="col">
+                <p>Contraseña: ********</p>
+                <p>Cambiar Contraseña</p>
+            </div>
+        </div>
+        <hr>
+        <div class="order">
+            <h3>Pedidos</h3>
+            <p *ngIf="orders.length==0">Aún no se han registrado pedidos.</p>
+        </div>
+        <hr>
+    </div>
 </div>

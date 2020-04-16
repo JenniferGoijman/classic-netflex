@@ -1,0 +1,49 @@
+.background {
+  background: #f3f3f3;
+  color: #333;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    margin-top: 30px;
+    width: 50%;
+    height: fit-content;
+
+    mat-horizontal-stepper {
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.3);
+
+      .infoMovie {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        padding: 0 30px;
+
+        .poster {
+          .divBtnCerrar {
+            width: 185px;
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            cursor: pointer;
+
+            .btnCerrar {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+
+    .mat-stepper-horizontal {
+      margin-top: 8px;
+    }
+
+    .mat-form-field {
+      margin-top: 16px;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div class="background">
+    <div class="container">
+        <mat-horizontal-stepper [linear]="!isLinear" #stepper>
+            <mat-step>
+                <ng-template matStepLabel>Película</ng-template>
+                <div class="infoMovie">
+                    <div class="info">
+                        <h1>{{movie.title}}</h1>
+                        <div>{{movie.release_date | date:"yyyy"}} {{time_convert(movie.runtime)}}</div>
+                        <div>{{movie.overview}}</div>
+                        <div>Protagonistas: {{movie.credits.cast[0].name}}</div>
+                        <div>Géneros: {{movie.genres[0].name}}
+                        </div>
+                    </div>
+                    <div class="poster">
+                        <div class="divBtnCerrar" (click)="closeDetails()">
+                            <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
+                        <img src="http://image.tmdb.org/t/p/w185/{{movie.poster_path}}" class="poster">
+
+                    </div>
+                </div>
+
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your address</ng-template>
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>
+
+{{movie | json}}

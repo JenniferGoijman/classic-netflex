@@ -14,11 +14,12 @@ export class OrderService {
   }
   getByUser(token) {
     return this.httpClient.get('http://localhost:3000/orders/user', {
-      headers: {'authorization': token}
+      headers: { 'authorization': token }
     })
   }
   insert(token, order): Observable<any> {
     return this.httpClient.post('http://localhost:3000/orders', order, {
       headers: { authorization: token }
     });
+  }
 }

@@ -10,6 +10,8 @@ import { LoginComponent } from './container/user/login/login.component';
 import { RegisterComponent } from './container/user/register/register.component';
 import { ConfirmedComponent } from './container/user/confirmed/confirmed.component';
 import { MoviesComponent } from './container/movies/movies.component';
+import { ProfileComponent } from './container/profile/profile.component';
+import { CartComponent } from './container/cart/cart.component';
 
 //import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,8 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatVideoModule } from 'mat-video';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
-import {MatMenuModule} from '@angular/material/menu';
-import { ProfileComponent } from './container/profile/profile.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ registerLocaleData(es);
     RegisterComponent,
     ConfirmedComponent,
     MoviesComponent,
-    ProfileComponent
+    ProfileComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ registerLocaleData(es);
     MatVideoModule,
     MatPaginatorModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatButtonModule
   ],
   //providers: [{provide: NZ_I18N, useValue: es_ES  }],
   bootstrap: [AppComponent]
