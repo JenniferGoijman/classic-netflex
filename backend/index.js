@@ -3,9 +3,7 @@ const morgan = require('morgan');
 const app = express();
 const PORT = 3000;
 
-// const productsRouter = require('./routes/products');
-// const categoriesRouter = require('./routes/categories');
-// const ordersRouter = require('./routes/orders');
+const ordersRouter = require('./routes/orders');
 const usersRouter = require('./routes/users');
 
 app.use(morgan('dev'));
@@ -18,9 +16,7 @@ app.use((req, res, next) => {
     next();
 });
 app.options('/*',(req, res, next) => res.send());
-// app.use('/products', productsRouter);
-// app.use('/categories', categoriesRouter);
-// app.use('/orders', ordersRouter);
+app.use('/orders', ordersRouter);
 app.use('/users', usersRouter);
 
 app.listen(PORT, ()=> console.log('server running on PORT '+PORT));
