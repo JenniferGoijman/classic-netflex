@@ -4,8 +4,13 @@
     <div class="headerRight">
       <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
         <img src="../../../assets/img/cart.png" class="btnCart" alt="Carrito"></span>
-
-      <p class="btnLogin" routerLink="/login">Iniciar sesión</p>
+      <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
+        {{userService['user']['surname']}}</p>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/profile">Mi cuenta</button>
+        <button mat-menu-item (click)="logOut()">Cerrar sesión</button>
+      </mat-menu>
+      <p class="btnLogin" routerLink="/login" *ngIf="!userService['user']['role']">Iniciar sesión</p>
     </div>
   </header>
   <main>

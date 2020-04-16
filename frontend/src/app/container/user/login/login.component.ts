@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
             this.userService.setUser(res['user']);
             this.userService.setToken(res['token']);
             localStorage.setItem('authToken', res['token']);
+            setTimeout(()=> { this.router.navigate(['/movies'])})
             //this.notification.success('Login realizado con éxito', res['message']);
           },
           (error: HttpErrorResponse) => {

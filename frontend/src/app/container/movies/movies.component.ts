@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 export interface Movie {
   id: number;
@@ -36,7 +37,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   constructor(public movieService: MovieService,
     private changeDetectorRef: ChangeDetectorRef,
-    public sanitizer: DomSanitizer,
+    public sanitizer: DomSanitizer, 
+    public userService: UserService,
     public cartService: CartService) { }
 
   ngOnInit(): void {
@@ -111,5 +113,12 @@ export class MoviesComponent implements OnInit, OnDestroy {
     if (this.cartService.moviesInCart.find((m)=>m.id===movie.id))return;
     this.cartService.moviesInCart.push(movie);
     localStorage.setItem('cart', JSON.stringify(this.cartService.moviesInCart))
+  }
+  
+  logOut() {
+    localStorage.removeItem('authToken');
+    this.userService['user'] = {};
+    localStorage.removeItem('cart');
+    this.cartService.moviesInCart = [];
   }
 }

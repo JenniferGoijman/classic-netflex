@@ -24,7 +24,13 @@
       width: 20%;
       display: flex;
       justify-content: space-around;
-      align-items: flex-start;
+      align-items: center;
+      
+
+      .btnUser {
+        color: white;
+        cursor: pointer;
+      }
 
       .btnLogin {
         background-color: #e50914;
@@ -64,7 +70,7 @@
     }
 
     .movies-container {
-      padding-top: 90vh;
+      padding-top: 91vh;
       z-index: 99999;
       background-color: rgba(14, 14, 14);
 
@@ -81,8 +87,7 @@
       .divPopularMovies {
         display: flex;
         flex-direction: row;
-        margin: 20px 0;
-        background-color: rgba(14, 14, 14);
+        margin: 20px 0;        
 
         $itemGrow: 1.2;
         $duration: 250ms;

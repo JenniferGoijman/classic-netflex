@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatVideoModule } from 'mat-video';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
+import { ProfileComponent } from './container/profile/profile.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ registerLocaleData(es);
     LoginComponent,
     RegisterComponent,
     ConfirmedComponent,
-    MoviesComponent
+    MoviesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ registerLocaleData(es);
     MatInputModule,
     MatVideoModule,
     MatPaginatorModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule
   ],
   //providers: [{provide: NZ_I18N, useValue: es_ES  }],
   bootstrap: [AppComponent]
