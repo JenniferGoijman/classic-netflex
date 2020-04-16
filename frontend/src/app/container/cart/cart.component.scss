@@ -20,6 +20,14 @@
         display: flex;
         flex-direction: row;
         padding: 0 30px;
+        border: 1px solid rgba(3, 3, 3, 0.1);
+        padding: 20px;
+        margin: 10px 0;
+
+        .info{
+            margin-right: 20px;
+            text-align: justify;
+        }
 
         .poster {
           .divBtnCerrar {

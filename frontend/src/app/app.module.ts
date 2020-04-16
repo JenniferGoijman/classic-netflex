@@ -26,6 +26,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { AgmCoreModule } from '@agm/core';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -53,7 +55,12 @@ registerLocaleData(es);
     MatBadgeModule,
     MatMenuModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
+      libraries: ['places']
+    })
   ],
   //providers: [{provide: NZ_I18N, useValue: es_ES  }],
   bootstrap: [AppComponent]

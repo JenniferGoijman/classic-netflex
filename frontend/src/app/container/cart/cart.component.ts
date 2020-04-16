@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { OrderService } from 'src/app/services/order.service';
+import { MatGoogleMapsAutocompleteModule, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
+import { Title } from '@angular/platform-browser';
+import PlaceResult = google.maps.places.PlaceResult;
+import { MapsAPILoader } from '@agm/core';
 
+declare var google;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,17 +19,42 @@ export class CartComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   movie;
+  public appearance = Appearance;
+  public zoom: number;
+  public latitude: number;
+  public longitude: number;
+  public selectedAddress: PlaceResult;
+  public searchControl: FormControl;
+
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
   constructor(private _formBuilder: FormBuilder,
-    public cartService: CartService, 
-    public userService: UserService, 
-    public orderService: OrderService) { }
+    public cartService: CartService,
+    public userService: UserService,
+    public orderService: OrderService,
+    private titleService: Title,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
     this.movie = this.cartService.moviesInCart[0];
+
+    this.titleService.setTitle('Home | @angular-material-extensions/google-maps-autocomplete');
+    this.zoom = 10;
+    this.latitude = 52.520008;
+    this.longitude = 13.404954;
+    this.setCurrentPosition();
+  }
+
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
   }
 
   insertOrder(event: any) {
@@ -55,16 +85,16 @@ export class CartComponent implements OnInit {
     this.cartService.moviesInCart = [];
 
   }
-  
+
   deleteProduct(productId, event) {
     event.target.parentNode.parentNode.remove()
     const productsFiltered = this.cartService.moviesInCart.filter(p => p.id !== productId);
     localStorage.setItem('cart', JSON.stringify(productsFiltered));
     this.cartService.moviesInCart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
   }
-  
-  closeDetails(){
-      this.movie = '';
+
+  closeDetails() {
+    this.movie = '';
   }
 
   time_convert(num) {
@@ -73,4 +103,7 @@ export class CartComponent implements OnInit {
     return `${hours} h ${minutes} min`;
   }
 
+  onAutocompleteSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+  }
 }
