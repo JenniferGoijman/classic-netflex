@@ -26,7 +26,7 @@
             <mat-step>
                 <ng-template matStepLabel>Dirección de envío</ng-template>
                 <mat-card>
-                    <mat-card-title>Auto Parse Address</mat-card-title>
+                    <mat-card-title>Ingrese la dirección donde recibirá el pedido</mat-card-title>
                     <mat-card-content>
                         <mat-search-google-maps-autocomplete appearance="outline" country="ES">
                         </mat-search-google-maps-autocomplete>
@@ -37,10 +37,10 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
+                <p>Desea confirmar el pedido?</p>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button (click)="insertOrder()">Confirmar</button>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>

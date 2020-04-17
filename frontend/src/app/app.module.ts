@@ -58,7 +58,7 @@ registerLocaleData(es);
     MatButtonModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
+      apiKey: '',
       libraries: ['places']
     })
   ],

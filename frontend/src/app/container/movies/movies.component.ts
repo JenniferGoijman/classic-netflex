@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
+import { OrderService } from 'src/app/services/order.service';
 
 export interface Movie {
   id: number;
@@ -23,26 +24,41 @@ export class MoviesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource;
+  
   length = 50;
   pageIndex = 0;
   pageSize = 5;
   pageEvent: PageEvent;
   public hasPreviousPage: boolean;
   public hasNextPage: boolean;
+  
   public allMovies;
   Movie = []
   showTrailer;
   showTrailerDetails;
   public infoMovie;
 
+  @ViewChild(MatPaginator, { static: false }) paginator2: MatPaginator;
+  orders: Observable<any>;
+  dataSource2;
+  public allOrders;
+  MovieOrder = []
+  public mov;
+
   constructor(public movieService: MovieService,
     private changeDetectorRef: ChangeDetectorRef,
     public sanitizer: DomSanitizer, 
     public userService: UserService,
-    public cartService: CartService) { }
+    public cartService: CartService,
+    public orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.movieService.getPopular()
+    this.getPopular();
+    this.getOrders();
+  }
+
+  getPopular(){
+  this.movieService.getPopular()
       .subscribe(res => {
         this.allMovies = res.results;
         this.changeDetectorRef.detectChanges();
@@ -51,6 +67,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
         this.hasNextPage = true;
         this.allMovies.forEach(m => { this.Movie.push({ id: m.id, title: m.title, image: m.backdrop_path }) })
         this.dataSource = new MatTableDataSource<Movie>(this.Movie);
+        console.log(this.dataSource);
         this.movieService.getTrailer(this.allMovies[0].id)
           .subscribe(res => {
             this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
@@ -58,7 +75,37 @@ export class MoviesComponent implements OnInit, OnDestroy {
         this.obs = this.dataSource.connect();
       },
         error => console.error(error));
-  }
+      }
+
+  getOrders(){
+    const token = localStorage.getItem('authToken');
+    this.orderService.getByUser(token)
+    .subscribe(res => {
+      this.allOrders = res;
+      this.changeDetectorRef.detectChanges();
+      //setTimeout(() => this.dataSource2.paginator = this.paginator2);
+      // this.hasPreviousPage = false;
+      // this.hasNextPage = true;
+      this.allOrders.forEach(m => {
+        this.movieService.getById(m.movieId)
+        .subscribe(res => { 
+          this.mov = res;
+          this.MovieOrder.push({
+            id: this.mov.id, title: this.mov.title, image: this.mov.backdrop_path
+          })
+        },
+          error => console.error(error));
+        })
+      this.dataSource2 = new MatTableDataSource<Movie>(this.MovieOrder);
+      // this.movieService.getTrailer(this.allMovies[0].id)
+      //   .subscribe(res => {
+      //     this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
+      //   }, error => console.error(error));
+      this.orders = this.dataSource2.connect();
+      console.log("hola", this.orders);
+    },
+      error => console.error(error));
+    }
 
   nextPage() {
     this.dataSource.paginator.nextPage();

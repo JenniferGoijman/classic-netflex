@@ -57,23 +57,17 @@ export class CartComponent implements OnInit {
     }
   }
 
-  insertOrder(event: any) {
-    const token = localStorage.getItem('authToken')
-    const arrProducts = []
-    let i = 0;
-
-    for (const product of this.cartService.moviesInCart) {
-      const arrProduct = [product.id, event.target[i].value]
-      arrProducts.push(arrProduct);
-      i++;
-    }
-
+  insertOrder() {
+    const token = localStorage.getItem('authToken');
     var today = new Date();
     const order = {
-      "deliveryDate": today.toLocaleDateString().split('/').reverse().join('-') + ' ' + today.toLocaleTimeString(),
+      "date": today.toLocaleDateString().split('/').reverse().join('-') + ' ' + today.toLocaleTimeString(),
       "status": "pending",
       "UserId": this.userService.getUser(),
-      "products": arrProducts
+      "movieId": this.movie.id,
+      "days": 3,
+      "amount": 6.5,
+      "estimatedDeliveryDate": "2020-04-25 00:00:00"
     }
     console.log(token, order)
 
