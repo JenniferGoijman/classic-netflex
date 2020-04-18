@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +12,9 @@ import { ConfirmedComponent } from './container/user/confirmed/confirmed.compone
 import { MoviesComponent } from './container/movies/movies.component';
 import { ProfileComponent } from './container/profile/profile.component';
 import { CartComponent } from './container/cart/cart.component';
+import { PopularMoviesComponent } from './components/popular-movies/popular-movies.component';
 
-//import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
+
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
@@ -28,7 +29,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
-import { PopularMoviesComponent } from './components/popular-movies/popular-movies.component';
+import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ registerLocaleData(es);
     MoviesComponent,
     ProfileComponent,
     CartComponent,
-    PopularMoviesComponent    
+    PopularMoviesComponent,
+    OrdersMoviesComponent    
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,6 @@ registerLocaleData(es);
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    //NgZorroAntdModule,
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
@@ -60,7 +61,7 @@ registerLocaleData(es);
     MatButtonModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
+
       libraries: ['places']
     })
   ],

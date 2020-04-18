@@ -1,0 +1,15 @@
+<h3>Vistas en Classic Netflex</h3>
+<div class="divMovies">
+  <div class="wrapper">
+    <section id="section1">
+      <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
+      <div class="item" *ngFor="let movie of orders | async">
+        <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
+        <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
+      </div>
+      <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
+    </section>
+  </div>
+  <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize" [style.display]="'none'">
+  </mat-paginator>
+</div>

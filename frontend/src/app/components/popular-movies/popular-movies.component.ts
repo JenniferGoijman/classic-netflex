@@ -51,14 +51,18 @@ export class PopularMoviesComponent implements OnInit {
         setTimeout(() => this.dataSource.paginator = this.paginator);
         this.hasPreviousPage = false;
         this.hasNextPage = true;
-        this.allMovies.forEach(m => { this.Movie.push({ id: m.id, title: m.title, image: m.backdrop_path }) })
+        this.allMovies.forEach(m => {
+          this.Movie.push({ 
+            id: m.id, title: m.title, image: m.backdrop_path 
+          })
+        })
         this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-        console.log(this.dataSource);
         this.movieService.getTrailer(this.allMovies[0].id)
           .subscribe(res => {
             this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
           }, error => console.error(error));
         this.obs = this.dataSource.connect();
+
       },
         error => console.error(error));
   }

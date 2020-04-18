@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'netflex';
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private router: Router) { }
 
 
   ngOnInit() {
@@ -18,7 +19,10 @@ export class AppComponent {
     if (token) {
       this.userService.getUserInfo(token)
         .subscribe(
-          (res: HttpResponse<object>) => this.userService.setUser(res),
+          (res: HttpResponse<object>) => 
+          {this.userService.setUser(res);
+            //this.router.navigate(['/movies']);
+          },
           (error: HttpErrorResponse) => {
             console.error(error);
             localStorage.removeItem('authToken');
