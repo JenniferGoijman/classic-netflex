@@ -3,47 +3,6 @@
   height: fit-content;
   font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-  header {
-    background-color: transparent;
-    height: 15vh;
-    width: 100%;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    z-index: 1;
-
-    .logo {
-      width: 130px;
-      filter: contrast(1.5);
-      cursor: pointer;
-    }
-
-    .headerRight{
-      width: 20%;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      
-
-      .btnUser {
-        color: white;
-        cursor: pointer;
-      }
-
-      .btnLogin {
-        background-color: #e50914;
-        color: white;
-        width: 120px;
-        border-radius: 4px;
-        text-align: center;
-        padding: 8px 8px;
-        cursor: pointer;
-      }
-    }
-  }
-
   main {
     height: 200vh;
 

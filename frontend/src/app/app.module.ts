@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.component';
+import { HeaderComponent } from './components/header/header.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ registerLocaleData(es);
     ProfileComponent,
     CartComponent,
     PopularMoviesComponent,
-    OrdersMoviesComponent    
+    OrdersMoviesComponent,
+    HeaderComponent    
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ registerLocaleData(es);
     MatButtonModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
-
+      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
       libraries: ['places']
     })
   ],
