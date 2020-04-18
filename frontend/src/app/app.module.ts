@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
+import { PopularMoviesComponent } from './components/popular-movies/popular-movies.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ registerLocaleData(es);
     ConfirmedComponent,
     MoviesComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    PopularMoviesComponent    
   ],
   imports: [
     BrowserModule,
@@ -58,11 +60,11 @@ registerLocaleData(es);
     MatButtonModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
       libraries: ['places']
     })
   ],
-  //providers: [{provide: NZ_I18N, useValue: es_ES  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

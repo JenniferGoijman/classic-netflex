@@ -20,43 +20,7 @@
     </div>
 
     <div class="movies-container">
-
-      <h3>Populares en Classic Netflex</h3>
-      <div class="divPopularMovies">
-        <div class="wrapper">
-          <section id="section1">
-            <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
-            <div class="item" *ngFor="let movie of obs | async">
-              <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
-              <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
-            </div>
-            <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
-          </section>
-        </div>
-        <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
-          [style.display]="'none'"></mat-paginator>
-      </div>
-
-      <div *ngIf="infoMovie" class="infoMovie">
-        <div class="divBtnCerrar" (click)="closeDetails()">
-          <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
-        <div class="info">
-          <h1>{{infoMovie.title}}</h1>
-          <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
-          <div>{{infoMovie.overview}}</div>
-          <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>
-          <div>Géneros: {{infoMovie.genres[0].name}}
-          </div>
-          <p class="btnWantIt" (click)="addCart(infoMovie)">La quiero ya!</p>
-        </div>
-        <div class="trailer">
-        </div>
-        <div class="trailer-container">
-          <iframe width="711" height="400" [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailerDetails)"
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-      </div>
+      <app-popular-movies></app-popular-movies>
 
       <h3>Vistas en Classic Netflex</h3>
       <div class="divPopularMovies">

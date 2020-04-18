@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
   api_key="api_key=cea68b520beecac6718820e4ac576c3a";
+  showMovieDetails:boolean;
+
   constructor(public httpClient: HttpClient) { }
 
   getPopular(): Observable<any> {
