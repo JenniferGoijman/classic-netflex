@@ -51,9 +51,9 @@ export class OrdersMoviesComponent implements OnInit {
         .subscribe(res => {
           this.allOrders = res;
           this.changeDetectorRef.detectChanges();
-          // setTimeout(() => this.dataSource.paginator = this.paginator);
-          // this.hasPreviousPage = false;
-          // this.hasNextPage = true;
+          //setTimeout(() => this.dataSource.paginator = this.paginator);
+          this.hasPreviousPage = false;
+          this.hasNextPage = true;
           this.allOrders.forEach(m => {
             this.movieService.getById(m.movieId)
               .subscribe(res => {

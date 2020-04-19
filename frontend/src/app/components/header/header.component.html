@@ -1,14 +1,27 @@
+<style>
+  ::ng-deep .mat-menu-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+</style>
+
 <header>
+  <div class="headerLeft">
     <img src="../../../assets/img/logo.png" class="logo" routerLink="" alt="">
-    <div class="headerRight">
-      <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
-        <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
-      <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
-        {{userService['user']['surname']}}</p>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/profile">Mi cuenta</button>
-        <button mat-menu-item (click)="logOut()">Cerrar sesión</button>
-      </mat-menu>
-      <p class="btnLogin" routerLink="/login" *ngIf="!userService['user']['role']">Iniciar sesión</p>
-    </div>
-  </header>
+    <p [matMenuTriggerFor]="menuGenres">Géneros</p>
+    <mat-menu class="custom-class" #menuGenres="matMenu">
+      <button mat-menu-item (click)="loadMoviesByGenre(genre)" *ngFor="let genre of genres">{{genre.name}}</button>
+    </mat-menu>
+  </div>
+  <div class="headerRight">
+    <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
+      <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
+    <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
+      {{userService['user']['surname']}}</p>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/profile">Mi cuenta</button>
+      <button mat-menu-item (click)="logOut()">Cerrar sesión</button>
+    </mat-menu>
+    <p class="btnLogin" routerLink="/login" *ngIf="!userService['user']['role']">Iniciar sesión</p>
+  </div>
+</header>

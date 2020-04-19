@@ -31,6 +31,7 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { AgmCoreModule } from '@agm/core';
 import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BigTrailerComponent } from './components/big-trailer/big-trailer.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ registerLocaleData(es);
     CartComponent,
     PopularMoviesComponent,
     OrdersMoviesComponent,
-    HeaderComponent    
+    HeaderComponent,
+    BigTrailerComponent    
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ registerLocaleData(es);
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule,
+    MatInputModule,    
     MatVideoModule,
     MatPaginatorModule,
     MatBadgeModule,
@@ -63,11 +65,11 @@ registerLocaleData(es);
     MatButtonModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCDfDOOqWnk1jLqCdegJVr90DM7w857FN8',
+      apiKey: '',
       libraries: ['places']
     })
   ],
-  providers: [],
+  providers: [BigTrailerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

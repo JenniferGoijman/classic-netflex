@@ -1,9 +1,9 @@
 <h3>Vistas en Classic Netflex</h3>
 <div class="divMovies">
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="this.orders">
     <section id="section1">
       <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
-      <div class="item" *ngFor="let movie of orders | async">
+      <div class="item" *ngFor="let movie of this.orders | async">
         <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
         <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
       </div>

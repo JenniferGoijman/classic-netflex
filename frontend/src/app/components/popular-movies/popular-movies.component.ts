@@ -29,14 +29,13 @@ export class PopularMoviesComponent implements OnInit {
   public hasNextPage: boolean;
   public allMovies;
   Movie = []
-  showTrailer;
   showTrailerDetails;
   public infoMovie;
 
-  constructor(public movieService: MovieService, 
+  constructor(public movieService: MovieService,
     public cartService: CartService,
     public sanitizer: DomSanitizer,
-    private changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -51,18 +50,15 @@ export class PopularMoviesComponent implements OnInit {
         setTimeout(() => this.dataSource.paginator = this.paginator);
         this.hasPreviousPage = false;
         this.hasNextPage = true;
+        this.movieService.mostPopularMovie = this.allMovies[0].id;
         this.allMovies.forEach(m => {
-          this.Movie.push({ 
-            id: m.id, title: m.title, image: m.backdrop_path 
+          this.Movie.push({
+            id: m.id, title: m.title, image: m.backdrop_path
           })
         })
         this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-        this.movieService.getTrailer(this.allMovies[0].id)
-          .subscribe(res => {
-            this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-          }, error => console.error(error));
+        console.log(this.dataSource)
         this.obs = this.dataSource.connect();
-
       },
         error => console.error(error));
   }
@@ -71,7 +67,7 @@ export class PopularMoviesComponent implements OnInit {
     this.movieService.getById(movieId)
       .subscribe(res => {
         this.infoMovie = res;
-        this.movieService.showMovieDetails=true;
+        this.movieService.showMovieDetails = true;
         this.movieService.getTrailer(movieId)
           .subscribe(res => {
             this.showTrailerDetails = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
@@ -92,7 +88,7 @@ export class PopularMoviesComponent implements OnInit {
     this.hasPreviousPage = this.dataSource.paginator.hasPreviousPage();
     this.hasNextPage = this.dataSource.paginator.hasNextPage();
   }
-  
+
   public pageChange(event?: PageEvent) {
     console.log(event);
     console.log(this.dataSource)
@@ -113,11 +109,11 @@ export class PopularMoviesComponent implements OnInit {
   closeDetails() {
     this.infoMovie = '';
     this.showTrailerDetails = '';
-    this.movieService.showMovieDetails=false;
+    this.movieService.showMovieDetails = false;
   }
 
   addCart(movie) {
-    if (this.cartService.moviesInCart.find((m)=>m.id===movie.id))return;
+    if (this.cartService.moviesInCart.find((m) => m.id === movie.id)) return;
     this.cartService.moviesInCart.push(movie);
     localStorage.setItem('cart', JSON.stringify(this.cartService.moviesInCart))
   }
