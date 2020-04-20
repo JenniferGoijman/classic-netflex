@@ -20,5 +20,6 @@ export class MoviesComponent implements OnInit {
     this.movieService.showPopularMovies = true;
     this.movieService.showOrderMovies = true;
     this.movieService.showBigTrailer = true;
+    this.movieService.showGenreMovies = false;
   } 
 }

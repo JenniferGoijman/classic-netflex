@@ -28,7 +28,12 @@ export class HeaderComponent implements OnInit {
   }
 
   loadMoviesByGenre(genre) {
-    console.log(genre.name)
+    this.movieService.showPopularMovies = false;
+    this.movieService.showOrderMovies = false;
+    this.movieService.showBigTrailer = false;
+    this.movieService.showGenreMovies = true;
+    this.movieService.genre=genre;
+    console.log(this.movieService.genre)
   }
 
   logOut() {

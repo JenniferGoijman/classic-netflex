@@ -11,7 +11,10 @@ export class MovieService {
   showPopularMovies:boolean;
   showOrderMovies:boolean;
   showBigTrailer:boolean;
+  showGenreMovies:boolean;
   mostPopularMovie:number;
+  genre:{};
+  
 
   constructor(public httpClient: HttpClient) { }
   

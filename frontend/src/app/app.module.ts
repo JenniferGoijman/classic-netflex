@@ -32,6 +32,7 @@ import { AgmCoreModule } from '@agm/core';
 import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BigTrailerComponent } from './components/big-trailer/big-trailer.component';
+import { GenreMoviesComponent } from './components/genre-movies/genre-movies.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ registerLocaleData(es);
     PopularMoviesComponent,
     OrdersMoviesComponent,
     HeaderComponent,
-    BigTrailerComponent    
+    BigTrailerComponent,
+    GenreMoviesComponent    
   ],
   imports: [
     BrowserModule,

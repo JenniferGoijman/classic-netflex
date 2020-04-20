@@ -8,9 +8,13 @@
     height: fit-content;
 
     .movies-container {
-      padding-top: 91vh;
+      padding-top: 93vh;
       z-index: 99999;
       background-color: rgba(14, 14, 14);
+    }
+
+    .genreMovies {
+      padding-top: 100px;
     }
   }
 }

@@ -13,17 +13,17 @@ export interface Movie {
 }
 
 @Component({
-  selector: 'app-popular-movies',
-  templateUrl: './popular-movies.component.html',
-  styleUrls: ['./popular-movies.component.scss']
+  selector: 'app-genre-movies',
+  templateUrl: './genre-movies.component.html',
+  styleUrls: ['./genre-movies.component.scss']
 })
-export class PopularMoviesComponent implements OnInit {
+export class GenreMoviesComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource;
   length = 50;
   pageIndex = 0;
-  pageSize = 5;
+  pageSize = 10;
   pageEvent: PageEvent;
   public hasPreviousPage: boolean;
   public hasNextPage: boolean;
@@ -35,32 +35,31 @@ export class PopularMoviesComponent implements OnInit {
   constructor(public movieService: MovieService,
     public cartService: CartService,
     public sanitizer: DomSanitizer,
-    private changeDetectorRef: ChangeDetectorRef
-  ) { }
+    private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.getPopular();
-  }
-
-  getPopular() {
-    this.movieService.getPopular()
-      .subscribe(res => {
-        this.allMovies = res['results'];
-        this.changeDetectorRef.detectChanges();
-        setTimeout(() => this.dataSource.paginator = this.paginator);
-        this.hasPreviousPage = false;
-        this.hasNextPage = true;
-        this.movieService.mostPopularMovie = this.allMovies[0].id;
-        this.allMovies.forEach(m => {
-          this.Movie.push({
-            id: m.id, title: m.title, image: m.backdrop_path
+    const genreId = this.movieService.genre['id'];
+    console.log(genreId);
+    if (genreId) {
+      console.log("HOLAAAAAAAAAA")
+      this.movieService.getByGenre(genreId)
+        .subscribe(res => {
+          this.allMovies = res['results'];
+          this.changeDetectorRef.detectChanges();
+          setTimeout(() => this.dataSource.paginator = this.paginator);
+          this.hasPreviousPage = false;
+          this.hasNextPage = false;
+          this.allMovies.forEach(m => {
+            this.Movie.push({
+              id: m.id, title: m.title, image: m.backdrop_path
+            })
           })
-        })
-        this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-        console.log(this.dataSource)
-        this.obs = this.dataSource.connect();
-      },
-        error => console.error(error));
+          this.dataSource = new MatTableDataSource<Movie>(this.Movie);
+          console.log(this.dataSource)
+          this.obs = this.dataSource.connect();
+        },
+          error => console.error(error));
+    }
   }
 
   getMovieById(movieId) {
@@ -117,4 +116,5 @@ export class PopularMoviesComponent implements OnInit {
     this.cartService.moviesInCart.push(movie);
     localStorage.setItem('cart', JSON.stringify(this.cartService.moviesInCart))
   }
+
 }
