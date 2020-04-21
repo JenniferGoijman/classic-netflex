@@ -30,13 +30,17 @@ header {
   }
 
   .headerRight {
-    width: 20%;
+    width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
 
     .btnSearch {
       cursor: pointer;
+    }
+
+    input {
+      color: white;
     }
     
     .btnSearchIcon{
@@ -45,11 +49,13 @@ header {
 
     .btnCart {
       cursor: pointer;
+      margin-left: 30px;
     }
 
     .btnUser {
       color: white;
       cursor: pointer;
+      margin-left: 30px;
     }
 
     .btnLogin {
@@ -60,6 +66,7 @@ header {
       text-align: center;
       padding: 8px 8px;
       cursor: pointer;
+      margin-left: 30px;
     }
   }
 }

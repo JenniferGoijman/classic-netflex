@@ -8,6 +8,7 @@ import { ConfirmedComponent } from './container/user/confirmed/confirmed.compone
 import { MoviesComponent } from './container/movies/movies.component';
 import { ProfileComponent } from './container/profile/profile.component';
 import { CartComponent } from './container/cart/cart.component';
+import { SearchMoviesActorsComponent } from './components/search-movies-actors/search-movies-actors.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'search/:search', component: SearchMoviesActorsComponent },
 ];
 
 @NgModule({

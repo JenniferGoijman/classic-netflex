@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Actores</h2>
+    <div class="actors">
+        <div class="actor" *ngFor="let actor of actors">
+            <img src="http://image.tmdb.org/t/p/w45/{{actor.profile_path}}" *ngIf="actor.profile_path" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg" class="noPic" *ngIf="!actor.profile_path" />
+            <div class="act">{{actor.name}}</div>
+        </div>
+    </div>
+
+    <h2>Peliculas</h2>
+    <div class="divMovies">
+        <div class="wrapper">
+            <section id="section1">
+                <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
+                <div class="item" *ngFor="let movie of movies">
+                    <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
+                    <img src="http://image.tmdb.org/t/p/w300/{{movie.backdrop_path}}" />
+                </div>
+                <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
+            </section>
+        </div>
+        <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize" [style.display]="'none'">
+        </mat-paginator>
+    </div>
+</div>

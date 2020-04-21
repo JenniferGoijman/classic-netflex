@@ -1,5 +1,5 @@
 <div class="background">
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
   <main>
     <app-big-trailer *ngIf="this.movieService.showBigTrailer"></app-big-trailer>
     <div class="movies-container" *ngIf="this.movieService.showPopularMovies">
@@ -8,6 +8,9 @@
     </div>
     <div class="genreMovies">
       <app-genre-movies *ngIf="this.movieService.showGenreMovies"></app-genre-movies>
+    </div>
+    <div class="searchMovies">
+      <app-search-movies-actors *ngIf="this.movieService.showSearchResults"></app-search-movies-actors>
     </div>
   </main>
 </div>

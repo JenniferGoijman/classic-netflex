@@ -31,6 +31,7 @@ import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.
 import { HeaderComponent } from './components/header/header.component';
 import { BigTrailerComponent } from './components/big-trailer/big-trailer.component';
 import { GenreMoviesComponent } from './components/genre-movies/genre-movies.component';
+import { SearchMoviesActorsComponent } from './components/search-movies-actors/search-movies-actors.component';
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ registerLocaleData(es);
     OrdersMoviesComponent,
     HeaderComponent,
     BigTrailerComponent,
-    GenreMoviesComponent    
+    GenreMoviesComponent,
+    SearchMoviesActorsComponent    
   ],
   imports: [
     BrowserModule,

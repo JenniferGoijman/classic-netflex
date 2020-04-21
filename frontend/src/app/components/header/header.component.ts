@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from 'src/app/services/movie.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,21 +16,38 @@ export class HeaderComponent implements OnInit {
   showInputSearch;
   showImageSearch;
   genre = new BehaviorSubject({});
+
   constructor(public userService: UserService,
     public cartService: CartService,
-    public movieService: MovieService) { }
+    public movieService: MovieService,
+    public router: Router) { }
 
   ngOnInit(): void {
     this.getGenres();
-    this.showInputSearch=false;
-    this.showImageSearch=true;
+    this.showInputSearch = false;
+    this.showImageSearch = true;
     console.log(this.movieService)
+  }
+
+  searchMoviesActors() {
+    const search = this.searchElement.nativeElement.value;
+    if (search != '') {
+      console.log(search)
+      this.movieService.showSearchResults = true;
+      this.movieService.showBigTrailer = false;
+      this.movieService.showPopularMovies = false;
+      this.movieService.showOrderMovies = false;
+      this.movieService.showGenreMovies = false;
+      this.router.navigate(['/search', search]);
+    }
   }
 
   getGenres() {
     this.movieService.getGenres()
-      .subscribe(res => { this.genres = res['genres'];
-      console.log(this.genres) },
+      .subscribe(res => {
+        this.genres = res['genres'];
+        console.log(this.genres)
+      },
         error => console.error(error));
   }
 
@@ -38,6 +56,7 @@ export class HeaderComponent implements OnInit {
     this.movieService.showOrderMovies = false;
     this.movieService.showBigTrailer = false;
     this.movieService.showGenreMovies = true;
+    this.movieService.showSearchResults = false;
     console.log(this.movieService)
     this.movieService.genre.next(genre);
   }
@@ -49,14 +68,17 @@ export class HeaderComponent implements OnInit {
     this.cartService.moviesInCart = [];
   }
 
-  showSearchInput(){
-    this.showInputSearch=true;
-    this.showImageSearch=false;
-    setTimeout(()=>{ this.searchElement.nativeElement.focus();},0);  
+  showSearchInput() {
+    this.showInputSearch = true;
+    this.showImageSearch = false;
+    setTimeout(() => { this.searchElement.nativeElement.focus(); }, 0);
   }
 
-  hideSearchInput(){
-    this.showInputSearch=false;
-    this.showImageSearch=true;
+  hideSearchInput() {
+    if (this.searchElement.nativeElement.value === '') {
+      this.showInputSearch = false;
+      this.showImageSearch = true;
+    }
+
   }
 }

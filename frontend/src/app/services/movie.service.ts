@@ -13,6 +13,7 @@ export class MovieService {
   showOrderMovies: boolean;
   showBigTrailer: boolean;
   showGenreMovies: boolean;
+  showSearchResults: boolean;
   mostPopularMovie: number;
 
 
@@ -36,6 +37,8 @@ export class MovieService {
   }
   getTrailer(movieId) {
     return this.httpClient.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?${this.api_key}&language=es-ES`)
-
+  }
+  getActorsByQuery(query){
+    return this.httpClient.get(`http://api.tmdb.org/3/search/person?${this.api_key}&query=${query}`)
   }
 }

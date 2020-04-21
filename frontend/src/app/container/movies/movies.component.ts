@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MovieService } from 'src/app/services/movie.service';
 import { UserService } from 'src/app/services/user.service';
@@ -23,5 +23,6 @@ export class MoviesComponent implements OnInit {
     this.movieService.showOrderMovies = true;
     this.movieService.showBigTrailer = true;
     this.movieService.showGenreMovies = false;
-  } 
+    this.movieService.showSearchResults = false;
+  }
 }
