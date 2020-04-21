@@ -51,7 +51,6 @@ export class OrdersMoviesComponent implements OnInit {
         .subscribe(res => {
           this.allOrders = res;
           this.changeDetectorRef.detectChanges();
-          
           this.hasPreviousPage = false;
           this.hasNextPage = true;
           this.allOrders.forEach((m,i,orders) => {

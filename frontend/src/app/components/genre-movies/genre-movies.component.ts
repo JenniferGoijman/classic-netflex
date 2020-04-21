@@ -39,33 +39,16 @@ export class GenreMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.movieService)
-     this.movieService.genre.subscribe(genre=>{
-      const genreId =genre['id'];
-      console.log("ngOnInit GenreMovies", genreId);
-    if (genreId) {
-      console.log("HOLAAAAAAAAAA")
-      this.movieService.getByGenre(genreId)
-        .subscribe(res => {
-          this.allMovies = res['results'];
-          this.changeDetectorRef.detectChanges();
-          //setTimeout(() => this.dataSource.paginator = this.paginator);
-          //this.hasPreviousPage = false;
-          //this.hasNextPage = false;
-          this.allMovies.forEach(m => {
-            this.Movie.push({
-              id: m.id, title: m.title, image: m.backdrop_path
-            })
-          })
-          console.log(this.Movie)
-          //this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-          console.log(this.dataSource)
-          
-          //this.obs = this.dataSource.connect();
-        },
-          error => console.error(error));
-    }
+    this.movieService.genre.subscribe(genre => {
+      const genreId = genre['id'];
+      if (genreId) {
+        this.movieService.getByGenre(genreId)
+          .subscribe(res => {
+            this.allMovies = res['results'];
+          },
+            error => console.error(error));
+      }
     })
-    
   }
 
   getMovieById(movieId) {
