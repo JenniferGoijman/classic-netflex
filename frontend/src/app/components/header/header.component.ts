@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('search') searchElement: ElementRef;
   public genres;
   showInputSearch;
   showImageSearch;
@@ -51,11 +52,11 @@ export class HeaderComponent implements OnInit {
   showSearchInput(){
     this.showInputSearch=true;
     this.showImageSearch=false;
+    setTimeout(()=>{ this.searchElement.nativeElement.focus();},0);  
   }
 
   hideSearchInput(){
     this.showInputSearch=false;
     this.showImageSearch=true;
-    console.log("tu vieeee")
   }
 }
