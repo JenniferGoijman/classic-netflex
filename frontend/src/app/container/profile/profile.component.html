@@ -22,7 +22,19 @@
         <hr>
         <div class="order">
             <h3>Pedidos</h3>
-            <p *ngIf="orders.length==0">Aún no se han registrado pedidos.</p>
+            <p *ngIf="this.allOrders?.length==0">Aún no se han registrado pedidos.</p>
+            <div class="cards">
+            <mat-card class="home-card" *ngFor="let order of this.moviesOrders">
+                <mat-card-content class="home-card-content">
+                    <img mat-card-image src="http://image.tmdb.org/t/p/w300/{{order.Movie.image}}" />
+                  <div>
+                    <h3>{{order.Movie.title}}</h3><br>
+                    <div>Fecha del pedido: {{order.date | date:"dd/MM/yyyy"}}</div><br>
+                    <div>Estado del pedido: {{order.status}}</div>
+                  </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
         </div>
         <hr>
     </div>
