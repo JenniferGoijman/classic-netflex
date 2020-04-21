@@ -51,26 +51,25 @@ export class OrdersMoviesComponent implements OnInit {
         .subscribe(res => {
           this.allOrders = res;
           this.changeDetectorRef.detectChanges();
-          //setTimeout(() => this.dataSource.paginator = this.paginator);
+          
           this.hasPreviousPage = false;
           this.hasNextPage = true;
-          this.allOrders.forEach(m => {
+          this.allOrders.forEach((m,i,orders) => {
             this.movieService.getById(m.movieId)
               .subscribe(res => {
-                this.mov = res;
                 this.Movie.push({
-                  id: this.mov.id, title: this.mov.title, image: this.mov.backdrop_path
+                  id: res['id'], title: res['title'], image: res['backdrop_path']
                 })
+                if(i===orders.length-1){
+                  console.log(this.Movie)
+                  this.dataSource = new MatTableDataSource<Movie>(this.Movie);
+                  console.log(this.dataSource);
+                  this.orders = this.dataSource.connect();
+                  console.log("this.orders:", this.orders)
+                  setTimeout(() => this.dataSource.paginator = this.paginator);
+                }
               })
           })
-          this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-          console.log(this.dataSource);
-          // this.movieService.getTrailer(this.allMovies[0].id)
-          //   .subscribe(res => {
-          //     this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-          //   }, error => console.error(error));
-          this.orders = this.dataSource.connect();
-          console.log("this.orders:", this.orders)
         },
           error => console.error(error));
     }

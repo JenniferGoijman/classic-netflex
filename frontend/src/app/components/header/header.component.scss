@@ -35,6 +35,17 @@ header {
     justify-content: space-around;
     align-items: center;
 
+    .btnSearch {
+      cursor: pointer;
+    }
+    
+    .btnSearchIcon{
+      width: 60%;
+    }
+
+    .btnCart {
+      cursor: pointer;
+    }
 
     .btnUser {
       color: white;

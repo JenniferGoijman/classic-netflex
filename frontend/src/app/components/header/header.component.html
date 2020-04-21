@@ -14,6 +14,11 @@
     </mat-menu>
   </div>
   <div class="headerRight">
+    <mat-form-field class="inputSearch" *ngIf="showInputSearch" (blur)="hideSearchInput()">
+      <mat-icon matPrefix><img src="../../../assets/img/search.png" class="btnSearchIcon" alt="Búsqueda"></mat-icon>
+      <input matInput type="search" placeholder="" class="search-input" autofocus>
+    </mat-form-field>
+    <img src="../../../assets/img/search.png" class="btnSearch" *ngIf="showImageSearch" alt="Búsqueda" (click)=showSearchInput()>
     <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
       <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
     <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}

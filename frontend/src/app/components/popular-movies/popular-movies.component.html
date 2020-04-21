@@ -18,7 +18,7 @@
     <div class="divBtnCerrar" (click)="closeDetails()">
       <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
     <div class="info">
-      <h1>{{infoMovie.title}}</h1>
+      <h2>{{infoMovie.title}}</h2>
       <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
       <div>{{infoMovie.overview}}</div>
       <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MovieService } from 'src/app/services/movie.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-movies',
@@ -13,7 +14,8 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     public sanitizer: DomSanitizer,
-    public movieService: MovieService
+    public movieService: MovieService,
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {

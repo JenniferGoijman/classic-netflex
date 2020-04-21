@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { CartService } from 'src/app/services/cart.service';
 import { MovieService } from 'src/app/services/movie.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +11,18 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class HeaderComponent implements OnInit {
   public genres;
-  languageFlag = 'n1';
-
+  showInputSearch;
+  showImageSearch;
+  genre = new BehaviorSubject({});
   constructor(public userService: UserService,
     public cartService: CartService,
     public movieService: MovieService) { }
 
   ngOnInit(): void {
     this.getGenres();
+    this.showInputSearch=false;
+    this.showImageSearch=true;
+    console.log(this.movieService)
   }
 
   getGenres() {
@@ -32,8 +37,8 @@ export class HeaderComponent implements OnInit {
     this.movieService.showOrderMovies = false;
     this.movieService.showBigTrailer = false;
     this.movieService.showGenreMovies = true;
-    this.movieService.genre=genre;
-    console.log(this.movieService.genre)
+    console.log(this.movieService)
+    this.movieService.genre.next(genre);
   }
 
   logOut() {
@@ -43,4 +48,14 @@ export class HeaderComponent implements OnInit {
     this.cartService.moviesInCart = [];
   }
 
+  showSearchInput(){
+    this.showInputSearch=true;
+    this.showImageSearch=false;
+  }
+
+  hideSearchInput(){
+    this.showInputSearch=false;
+    this.showImageSearch=true;
+    console.log("tu vieeee")
+  }
 }

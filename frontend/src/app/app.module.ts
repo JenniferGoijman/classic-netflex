@@ -27,8 +27,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
-import { AgmCoreModule } from '@agm/core';
 import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BigTrailerComponent } from './components/big-trailer/big-trailer.component';
@@ -65,11 +63,6 @@ registerLocaleData(es);
     MatMenuModule,
     MatStepperModule,
     MatButtonModule,
-    MatGoogleMapsAutocompleteModule,
-    AgmCoreModule.forRoot({
-      apiKey: '',
-      libraries: ['places']
-    })
   ],
   providers: [BigTrailerComponent],
   bootstrap: [AppComponent]

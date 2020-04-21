@@ -1,11 +1,11 @@
-<h1>Títulos en {{this.movieService.genre['name']}}</h1>
+<h1 *ngIf="(this.movieService.genre| async) as genre">Títulos en: {{genre['name']}}</h1>
 <div class="divMovies" *ngIf="this.movieService.genre">
     <div class="wrapper">
         <section id="section1">
             <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
-            <div class="item" *ngFor="let movie of obs | async">
+            <div class="item" *ngFor="let movie of allMovies">
                 <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
-                <img src="http://image.tmdb.org/t/p/w300/{{movie.image}}" />
+                <img src="http://image.tmdb.org/t/p/w300/{{movie.backdrop_path}}" />
             </div>
             <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
         </section>
@@ -18,7 +18,7 @@
     <div class="divBtnCerrar" (click)="closeDetails()">
       <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
     <div class="info">
-      <h1>{{infoMovie.title}}</h1>
+      <h2>{{infoMovie.title}}</h2>
       <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
       <div>{{infoMovie.overview}}</div>
       <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>

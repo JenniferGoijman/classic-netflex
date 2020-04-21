@@ -4,7 +4,7 @@
     <app-big-trailer *ngIf="this.movieService.showBigTrailer"></app-big-trailer>
     <div class="movies-container" *ngIf="this.movieService.showPopularMovies">
       <app-popular-movies *ngIf="this.movieService.showPopularMovies"></app-popular-movies>
-      <app-orders-movies *ngIf="this.movieService.showOrderMovies"></app-orders-movies>
+      <app-orders-movies *ngIf="(this.movieService.showOrderMovies && this.userService['user']['name'])"></app-orders-movies>
     </div>
     <div class="genreMovies">
       <app-genre-movies *ngIf="this.movieService.showGenreMovies"></app-genre-movies>

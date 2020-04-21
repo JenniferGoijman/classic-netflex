@@ -4,14 +4,13 @@ h3 {
   position: absolute;
   float: left;
   color: white;
-  margin: 0 0 20px 25px;
+  margin: 10px 0 0px 25px;
   font-weight: 500;
 }
 
 .divMovies {
   display: flex;
   flex-direction: row;
-  margin: 20px 0;
 
   $itemGrow: 1.2;
   $duration: 250ms;

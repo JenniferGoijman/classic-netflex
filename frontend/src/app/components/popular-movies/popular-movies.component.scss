@@ -5,14 +5,13 @@ h3 {
     position: absolute;
     float: left;
     color: white;
-    margin: 0 0 20px 25px;
+    margin: 10px 0 0 25px;
     font-weight: 500;
   }
 
   .divMovies {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;        
 
     $itemGrow: 1.2;
     $duration: 250ms;
@@ -23,7 +22,7 @@ h3 {
       overflow: hidden;
       scroll-behavior: smooth;
       margin-left: 25px;
-
+      margin-top: 20px;
       section {
         width: 100%;
         position: relative;

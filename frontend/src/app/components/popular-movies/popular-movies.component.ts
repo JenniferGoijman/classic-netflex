@@ -57,7 +57,7 @@ export class PopularMoviesComponent implements OnInit {
           })
         })
         this.dataSource = new MatTableDataSource<Movie>(this.Movie);
-        console.log(this.dataSource)
+        // console.log(this.dataSource)
         this.obs = this.dataSource.connect();
       },
         error => console.error(error));

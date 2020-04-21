@@ -8,7 +8,8 @@
     height: fit-content;
 
     .movies-container {
-      padding-top: 93vh;
+      padding-top: calc((100vw*9) /16 - 12em);
+      //padding-top: 93vh;
       z-index: 99999;
       background-color: rgba(14, 14, 14);
     }
