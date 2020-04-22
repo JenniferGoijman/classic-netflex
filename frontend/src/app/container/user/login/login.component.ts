@@ -3,6 +3,7 @@ import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms'
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar'
 //import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(public userService: UserService, public router: Router,
+  constructor(public userService: UserService, public router: Router, public snackBar: MatSnackBar
     //public notification:NzNotificationService
   ) {
   }
@@ -36,12 +37,16 @@ export class LoginComponent implements OnInit {
             this.userService.setUser(res['user']);
             this.userService.setToken(res['token']);
             localStorage.setItem('authToken', res['token']);
-            setTimeout(()=> { this.router.navigate(['/movies'])})
-            //this.notification.success('Login realizado con éxito', res['message']);
+            setTimeout(() => { this.router.navigate(['/movies']) })
+            this.snackBar.open('Login realizado con éxito', res['message'], {
+              duration: 2000,
+            })
           },
           (error: HttpErrorResponse) => {
             console.log(error);
-            //this.notification.error('Problema al intentar conectarte', error['error']['message']);
+            this.snackBar.open('Problema al intentar conectarte', error['error']['message'], {
+              duration: 2000,
+            })
           }
         )
       this.form.reset();

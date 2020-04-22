@@ -63,7 +63,6 @@ export class PopularMoviesComponent implements OnInit {
 
   getMovieById(movieId) {
     this.movieService.movieIdDetails.next({movie:movieId, component:"popular"});
-    //console.log(this.movieService.movieIdDetails.value['movie'])
   }
 
   nextPage() {

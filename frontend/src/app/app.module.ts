@@ -33,6 +33,7 @@ import { BigTrailerComponent } from './components/big-trailer/big-trailer.compon
 import { GenreMoviesComponent } from './components/genre-movies/genre-movies.component';
 import { SearchMoviesActorsComponent } from './components/search-movies-actors/search-movies-actors.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
 registerLocaleData(es);
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ registerLocaleData(es);
     MatMenuModule,
     MatStepperModule,
     MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [BigTrailerComponent],
   bootstrap: [AppComponent]

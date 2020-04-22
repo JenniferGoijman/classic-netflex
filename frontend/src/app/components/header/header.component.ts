@@ -67,6 +67,7 @@ export class HeaderComponent implements OnInit {
     this.userService['user'] = {};
     localStorage.removeItem('cart');
     this.cartService.moviesInCart = [];
+    this.router.navigate(['']);
   }
 
   showSearchInput() {
