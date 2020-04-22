@@ -32,4 +32,8 @@ export class SearchMoviesActorsComponent implements OnInit {
           );
       });
   }
+
+  getMovieById(m){
+
+  }
 }

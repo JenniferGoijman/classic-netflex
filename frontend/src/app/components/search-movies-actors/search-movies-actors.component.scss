@@ -6,7 +6,7 @@
   padding: 100px 25px 25px 25px;
   color: white;  
   
-  h2{
+  h2, h4{
       margin-left: 25px;
   }
 
@@ -19,6 +19,7 @@
         display: flex;
         align-items: center;
         margin: 5px;
+        cursor: pointer;
 
         .act{
             margin-left: 5px;

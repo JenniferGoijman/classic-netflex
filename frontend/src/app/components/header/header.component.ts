@@ -52,11 +52,12 @@ export class HeaderComponent implements OnInit {
   }
 
   loadMoviesByGenre(genre) {
+    this.router.navigate(['/movies']);
     this.movieService.showPopularMovies = false;
     this.movieService.showOrderMovies = false;
     this.movieService.showBigTrailer = false;
-    this.movieService.showGenreMovies = true;
     this.movieService.showSearchResults = false;
+    this.movieService.showGenreMovies = true;
     console.log(this.movieService)
     this.movieService.genre.next(genre);
   }

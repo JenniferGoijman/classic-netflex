@@ -14,23 +14,4 @@
     </mat-paginator>
 </div>
 
-<div *ngIf="infoMovie" class="infoMovie">
-    <div class="divBtnCerrar" (click)="closeDetails()">
-      <img src="../../../assets/img/cerrar.png" class="btnCerrar" alt="Cerrar"></div>
-    <div class="info">
-      <h2>{{infoMovie.title}}</h2>
-      <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
-      <div>{{infoMovie.overview}}</div>
-      <div>Protagonistas: {{infoMovie.credits.cast[0].name}}</div>
-      <div>Géneros: {{infoMovie.genres[0].name}}
-      </div>
-      <p class="btnWantIt" (click)="addCart(infoMovie)">La quiero ya!</p>
-    </div>
-    <div class="trailer">
-    </div>
-    <div class="trailer-container">
-      <iframe width="711" height="400" [src]="sanitizer.bypassSecurityTrustResourceUrl(this.showTrailerDetails)"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
-  </div>
+<app-movie-details [movieId]="MovieId" *ngIf="MovieId!=0"></app-movie-details>
