@@ -4,8 +4,6 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar'
-//import { NzNotificationService } from 'ng-zorro-antd';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +17,6 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(public userService: UserService, public router: Router, public snackBar: MatSnackBar
-    //public notification:NzNotificationService
   ) {
   }
 

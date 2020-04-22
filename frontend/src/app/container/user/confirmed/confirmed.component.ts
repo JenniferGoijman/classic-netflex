@@ -14,21 +14,15 @@ export class ConfirmedComponent implements OnInit {
     private router: Router,
     public userService: UserService) { }
 
-  ngOnInit(): void { //CHEQUEAR
+  ngOnInit(): void {
     const token = this.route.snapshot.params.token;
-    // this.userService.getUserInfo(token)
-    //   .subscribe(
-    //     res => this.userService.setUser(res)
-    //   )
-    localStorage.setItem('authToken', token);
-    this.userService.confirm(token)
+    this.userService.getUserInfo(token)
       .subscribe(
-        res => console.log(res)
+        res => this.userService.setUser(res)
       )
-
-    
-    // setTimeout(() => {
-    //   this.router.navigate(['']);
-    // }, 3000);
+    localStorage.setItem('authToken', token);
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 3000);
   }
 }

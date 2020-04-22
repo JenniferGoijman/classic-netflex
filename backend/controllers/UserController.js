@@ -21,7 +21,7 @@ const UserController = {
             }, jwt_secret, {
                 expiresIn: '48h'
             });
-            const url = API_URL + '/users/confirm/' + emailToken;
+            const url = API_URL + '/users/confirmed/' + emailToken;
             await transporter.sendMail({
                 to: email,
                 subject: 'Confirme su registro en Classic Netflex',
@@ -69,8 +69,6 @@ const UserController = {
                     email
                 }
             });
-            // Mongoose findOneAndUpdate
-            // const user = await User.findOneAndUpdate({email},{confirmed:true})
             const authToken = jwt.sign({
                 id: user.id
             }, jwt_secret);
@@ -78,11 +76,8 @@ const UserController = {
                 token: authToken,
                 UserId: user.id
             });
-            /* MongoDB
-            user.tokens.push(authToken);
-            await user.save();
-            */
-            res.redirect('http://localhost:4200/user/confirmado/' + authToken);
+            
+            res.redirect('http://localhost:4200/user/confirmed/' + authToken);
 
         } catch (error) {
             console.error(error)

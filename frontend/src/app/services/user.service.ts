@@ -34,7 +34,7 @@ export class UserService {
       headers: { authorization: token }
     })
   }
-  confirm(emailToken: string): Observable<any> {
-    return this.httpClient.get('http://localhost:3000/confirm/' + emailToken);
-  }
+  // confirm(emailToken: string): Observable<any> {
+  //   return this.httpClient.get('http://localhost:3000/confirm/' + emailToken);
+  // }
 }
