@@ -31,6 +31,7 @@ export class OrdersMoviesComponent implements OnInit {
   Movie = [];
   public infoMovie;
   showTrailerDetails;
+  showMovieDetails = false;
 
   constructor(
     public movieService: MovieService,
@@ -74,17 +75,8 @@ export class OrdersMoviesComponent implements OnInit {
   }
 
   getMovieById(movieId) {
-    this.movieService.getById(movieId)
-      .subscribe(res => {
-        this.infoMovie = res;
-        console.log(this.infoMovie);
-        this.movieService.showMovieDetails = true;
-        // this.movieService.getTrailer(movieId)
-        //   .subscribe(res => {
-        //     this.showTrailerDetails = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-        //   }, error => console.error(error));
-      },
-        error => console.error(error));
+    this.showMovieDetails = true;
+    this.movieService.movieIdDetails.next(movieId);
   }
 
   nextPage() {
@@ -100,7 +92,6 @@ export class OrdersMoviesComponent implements OnInit {
     this.hasNextPage = this.dataSource.paginator.hasNextPage();
   }
 
-
   public pageChange(event?: PageEvent) {
     console.log(event);
     console.log(this.dataSource)
@@ -110,23 +101,5 @@ export class OrdersMoviesComponent implements OnInit {
     if (this.dataSource) {
       this.dataSource.disconnect();
     }
-  }
-
-  time_convert(num) {
-    const hours = Math.floor(num / 60);
-    const minutes = num % 60;
-    return `${hours} h ${minutes} min`;
-  }
-
-  closeDetails() {
-    this.infoMovie = '';
-    this.showTrailerDetails = '';
-    this.movieService.showMovieDetails = false;
-  }
-
-  addCart(movie) {
-    if (this.cartService.moviesInCart.find((m) => m.id === movie.id)) return;
-    this.cartService.moviesInCart.push(movie);
-    localStorage.setItem('cart', JSON.stringify(this.cartService.moviesInCart))
   }
 }

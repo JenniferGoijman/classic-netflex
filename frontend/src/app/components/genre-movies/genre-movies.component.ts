@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
-import { BehaviorSubject } from 'rxjs';
 export interface Movie {
   id: number;
   title: string;
