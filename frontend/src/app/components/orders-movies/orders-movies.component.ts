@@ -29,8 +29,6 @@ export class OrdersMoviesComponent implements OnInit {
   public hasNextPage: boolean;
   public allOrders;
   Movie = [];
-  showTrailerDetails;
-  showMovieDetails = false;
 
   constructor(
     public movieService: MovieService,
@@ -74,8 +72,7 @@ export class OrdersMoviesComponent implements OnInit {
   }
 
   getMovieById(movieId) {
-    this.showMovieDetails = true;
-    this.movieService.movieIdDetails.next(movieId);
+    this.movieService.movieIdDetails.next({movie:movieId, component:"orders"});
   }
 
   nextPage() {

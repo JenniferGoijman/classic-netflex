@@ -14,7 +14,6 @@ export interface Movie {
 export class GenreMoviesComponent implements OnInit {
   public allMovies;
   Movie = []
-  showMovieDetails = false;
 
   constructor(public movieService: MovieService) { }
 
@@ -32,7 +31,6 @@ export class GenreMoviesComponent implements OnInit {
   }
 
   getMovieById(movieId) {
-    this.showMovieDetails = true;
-    this.movieService.movieIdDetails.next(movieId);
+    this.movieService.movieIdDetails.next({movie:movieId, component:"genre"});
   }
 }

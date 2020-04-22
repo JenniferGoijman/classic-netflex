@@ -17,9 +17,10 @@ export class MovieDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.movieService)
+    console.log(this.movieService.movieIdDetails)
     this.movieService.movieIdDetails.subscribe(m => {
-      const movieId = m;
+      const movieId = m['movie'];
+      console.log(m)
       if (movieId) {
         this.movieService.getById(movieId)
           .subscribe(res => {

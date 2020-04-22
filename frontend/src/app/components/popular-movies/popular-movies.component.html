@@ -1,3 +1,4 @@
+<h3>{{this.movieService.movieIdDetails['movie'] | json}}</h3><br>
 <h3>Populares en Classic Netflex</h3>
 <div class="divMovies">
     <div class="wrapper">
@@ -13,4 +14,4 @@
     <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize" [style.display]="'none'">
     </mat-paginator>
 </div>
-<app-movie-details *ngIf="this.movieService.movieIdDetails.value>0"></app-movie-details>
+<app-movie-details *ngIf="this.movieService.movieIdDetails.value['movie']>0 && this.movieService.movieIdDetails.value['component']=='popular'"></app-movie-details>

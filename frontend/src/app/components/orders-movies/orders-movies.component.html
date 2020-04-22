@@ -13,4 +13,4 @@
   <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize" [style.display]="'none'">
   </mat-paginator>
 </div>
-<app-movie-details *ngIf="this.movieService.movieIdDetails.value>0"></app-movie-details>
+<app-movie-details *ngIf="this.movieService.movieIdDetails.value['movie']>0 && this.movieService.movieIdDetails.value['component']=='orders'"></app-movie-details>

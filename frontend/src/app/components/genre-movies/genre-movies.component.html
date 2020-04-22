@@ -2,15 +2,11 @@
 <div class="divMovies" *ngIf="this.movieService.genre">
     <div class="wrapper">
         <section id="section1">
-            <a class="arrow__btn" (click)="previousPage()" [style.display]="!this.hasPreviousPage?'none':'block'">‹</a>
             <div class="item" *ngFor="let movie of allMovies">
                 <span class="card-title" (click)="getMovieById(movie.id)">{{movie.title}}</span>
                 <img src="http://image.tmdb.org/t/p/w300/{{movie.backdrop_path}}" />
             </div>
-            <a class="arrow__btn" (click)="nextPage()" [style.display]="!this.hasNextPage?'none':'block'">›</a>
         </section>
     </div>
-    <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize" [style.display]="'none'">
-    </mat-paginator>
 </div>
-<app-movie-details *ngIf="this.movieService.movieIdDetails.value>0"></app-movie-details>
+<app-movie-details *ngIf="this.movieService.movieIdDetails.value['movie']>0 && this.movieService.movieIdDetails.value['component']=='genre'"></app-movie-details>
