@@ -29,7 +29,6 @@ export class OrdersMoviesComponent implements OnInit {
   public hasNextPage: boolean;
   public allOrders;
   Movie = [];
-  public infoMovie;
   showTrailerDetails;
   showMovieDetails = false;
 
