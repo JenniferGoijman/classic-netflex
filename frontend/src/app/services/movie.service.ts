@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
   genre = new BehaviorSubject({});
+  movieIdDetails = new BehaviorSubject({})
   api_key = "api_key=cea68b520beecac6718820e4ac576c3a";
   showMovieDetails: boolean;
   showPopularMovies: boolean;
@@ -16,9 +17,7 @@ export class MovieService {
   showSearchResults: boolean;
   mostPopularMovie: number;
 
-
   constructor(public httpClient: HttpClient) { }
-
 
   getPopular(): Observable<any> {
     return this.httpClient.get(`https://api.themoviedb.org/3/discover/movie?${this.api_key}&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false`);

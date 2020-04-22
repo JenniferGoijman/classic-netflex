@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { CartService } from 'src/app/services/cart.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,7 +9,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
-  @Input() movieId: number;
   public infoMovie;
   showTrailerDetails;
 
@@ -18,17 +17,22 @@ export class MovieDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.movieId)
-    this.movieService.getById(this.movieId)
-      .subscribe(res => {
-        this.infoMovie = res;
-        this.movieService.showMovieDetails = true;
-        this.movieService.getTrailer(this.movieId)
+    console.log(this.movieService)
+    this.movieService.movieIdDetails.subscribe(m => {
+      const movieId = m;
+      if (movieId) {
+        this.movieService.getById(movieId)
           .subscribe(res => {
-            this.showTrailerDetails = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
-          }, error => console.error(error));
-      },
-        error => console.error(error));
+            this.infoMovie = res;
+            this.movieService.showMovieDetails = true;
+            this.movieService.getTrailer(movieId)
+              .subscribe(res => {
+                this.showTrailerDetails = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1"
+              }, error => console.error(error));
+          },
+            error => console.error(error));
+      }
+    })
   }
 
   time_convert(num) {
@@ -38,9 +42,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   closeDetails() {
-    this.infoMovie = '';
-    this.showTrailerDetails = '';
-    this.movieService.showMovieDetails = false;
+    this.movieService.movieIdDetails.next({});
   }
 
   addCart(movie) {
