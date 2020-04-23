@@ -16,13 +16,14 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(public userService: UserService, public router: Router, public snackBar: MatSnackBar
+  constructor(public userService: UserService, 
+    public router: Router, 
+    public snackBar: MatSnackBar
   ) {
   }
 
   ngOnInit(): void {
   }
-
 
   submit() {
     if (this.form.valid) {

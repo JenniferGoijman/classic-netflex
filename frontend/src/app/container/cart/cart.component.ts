@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { OrderService } from 'src/app/services/order.service';
-import { Title } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -12,15 +13,21 @@ import { Title } from '@angular/platform-browser';
 })
 export class CartComponent implements OnInit {
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
   movie;
-  
+
+  form: FormGroup = new FormGroup({
+    street: new FormControl(''),
+    city: new FormControl(''),
+    state: new FormControl(''),
+    zip: new FormControl('')
+  });
+
   constructor(private _formBuilder: FormBuilder,
     public cartService: CartService,
     public userService: UserService,
     public orderService: OrderService,
-    private titleService: Title) { }
+    public router: Router,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.movie = this.cartService.moviesInCart[0];
@@ -38,31 +45,40 @@ export class CartComponent implements OnInit {
       "amount": 6.5,
       "estimatedDeliveryDate": "2020-04-25 00:00:00"
     }
-    console.log(token, order)
 
     this.orderService.insert(token, order)
-      .subscribe(res => { res; },
+      .subscribe(res => {
+        res;
+        setTimeout(() => { this.router.navigate(['/movies']) })
+        this.snackBar.open('Pedido realizado con éxito', 'Aceptar', {
+          duration: 2000,
+        })
+      },
         error => console.error(error));
 
     localStorage.removeItem('cart');
     this.cartService.moviesInCart = [];
-
-  }
-
-  deleteProduct(productId, event) {
-    event.target.parentNode.parentNode.remove()
-    const productsFiltered = this.cartService.moviesInCart.filter(p => p.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(productsFiltered));
-    this.cartService.moviesInCart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
   }
 
   closeDetails() {
     this.movie = '';
+    localStorage.removeItem('cart');
+    this.cartService.moviesInCart = [];
+    setTimeout(() => { this.router.navigate(['/movies']) })
+    this.snackBar.open('Pelicula eliminada del carrito', 'Elija otra', {
+      duration: 2000,
+    })
   }
 
   time_convert(num) {
     const hours = Math.floor(num / 60);
     const minutes = num % 60;
     return `${hours} h ${minutes} min`;
+  }
+
+  submit() {
+    if (this.form.valid) {
+      const address = this.form.value;
+    }
   }
 }

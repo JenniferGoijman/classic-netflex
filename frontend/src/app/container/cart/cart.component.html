@@ -31,7 +31,20 @@
                 <mat-card>
                     <mat-card-title>Ingrese la dirección donde recibirá el pedido</mat-card-title>
                     <mat-card-content>
-                        
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <mat-form-field>
+                                <input matInput placeholder="Street" formControlName="street" required>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="City" formControlName="city" required>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="State" formControlName="state" required>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Zip" formControlName="zip" required>
+                            </mat-form-field>
+                        </form>
                     </mat-card-content>
                 </mat-card>
                 <button mat-button matStepperPrevious>Back</button>
