@@ -1,14 +1,14 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Fecha</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha</th>
       <td mat-cell *matCellDef="let order"> {{order.date}} </td>
     </ng-container>
     <ng-container matColumnDef="movieId">
-      <th mat-header-cell *matHeaderCellDef> Pelicula </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pelicula </th>
       <td mat-cell *matCellDef="let order"> {{order.movieId}} </td>
     </ng-container>
     <ng-container matColumnDef="UserId">
-      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
       <td mat-cell *matCellDef="let order"> {{order.UserId}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

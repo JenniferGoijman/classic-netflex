@@ -20,6 +20,8 @@ import { OrdersMoviesComponent } from './components/orders-movies/orders-movies.
 import { HeaderComponent } from './components/header/header.component';
 import { BigTrailerComponent } from './components/big-trailer/big-trailer.component';
 import { GenreMoviesComponent } from './components/genre-movies/genre-movies.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 
 import es from '@angular/common/locales/es';
 registerLocaleData(es);
@@ -36,9 +38,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { AdminUsersComponent } from './components/admin-users/admin-users.component';
-import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MovieDetailsComponent,
     AdminComponent,
     AdminUsersComponent,
-    AdminOrdersComponent    
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule,    
+    MatInputModule,
     MatVideoModule,
     MatPaginatorModule,
     MatBadgeModule,
@@ -77,7 +79,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatButtonModule,
     MatSnackBarModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSortModule
   ],
   providers: [BigTrailerComponent],
   bootstrap: [AppComponent]

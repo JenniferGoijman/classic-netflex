@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 export interface Order {
   date: string;
@@ -18,17 +19,16 @@ export class AdminOrdersComponent implements OnInit {
   Order= [];
   dataSource;
   displayedColumns: string[] = ['date', 'movieId', 'UserId'];
-
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   constructor(public orderService:OrderService) { }
 
   ngOnInit(): void {
     this.orderService.getAll()
       .subscribe(res => {
         this.orders = res;
-        // this.orders.forEach(u => {
-        //   this.Order.push({name: u.name, surname: u.surname, email:u.email, role:u.role})
-        // })
         this.dataSource = new MatTableDataSource<Order>(this.orders);
+        this.dataSource.sort = this.sort;
       }, error => console.error(error));
   }
 
