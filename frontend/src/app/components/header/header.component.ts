@@ -62,6 +62,15 @@ export class HeaderComponent implements OnInit {
     this.movieService.genre.next(genre);
   }
 
+  loadMoviesHome() {
+    this.router.navigate(['/movies']);
+    this.movieService.showPopularMovies = true;
+    this.movieService.showOrderMovies = true;
+    this.movieService.showBigTrailer = true;
+    this.movieService.showSearchResults = false;
+    this.movieService.showGenreMovies = false;
+  }
+
   logOut() {
     localStorage.removeItem('authToken');
     this.userService['user'] = {};
