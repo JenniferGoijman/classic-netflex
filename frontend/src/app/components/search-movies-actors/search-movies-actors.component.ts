@@ -11,6 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class SearchMoviesActorsComponent implements OnInit {
   movies;
   actors;
+  moviesByActor:boolean
 
   constructor(public route: ActivatedRoute,
     public movieService: MovieService) { }
@@ -18,7 +19,8 @@ export class SearchMoviesActorsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .subscribe(params => {
-
+        this.moviesByActor = false;
+        
         this.movieService.getByQuery(params.search)
           .subscribe(
             (res: HttpResponse<any>) => { this.movies = res['results']; },
@@ -31,6 +33,16 @@ export class SearchMoviesActorsComponent implements OnInit {
             (error: HttpErrorResponse) => console.log(error)
           );
       });
+  }
+
+  getMoviesByActorId(actorId){
+    console.log(actorId)
+    this.moviesByActor = true;
+    this.movieService.getMoviesByActorId(actorId)
+          .subscribe(
+            (res: HttpResponse<any>) => { this.movies = res['credits']['cast']; console.log(res)},
+            (error: HttpErrorResponse) => console.log(error)
+          );
   }
 
   getMovieById(m){

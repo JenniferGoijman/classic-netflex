@@ -1,11 +1,14 @@
+<div class="header">
+    <app-header></app-header>
+</div>
 <div class="background">
     <div class="container">
-        <mat-horizontal-stepper [linear]="!isLinear" #stepper>
+        <mat-horizontal-stepper [linear]="!isLinear" #stepper *ngIf="movie">
             <mat-step>
                 <ng-template matStepLabel>Película</ng-template>
                 <div class="infoMovie">
                     <div class="info">
-                        <!-- <h1>{{movie.title}}</h1> -->
+                        <h1>{{movie.title}}</h1>
                         <div>{{movie.release_date | date:"yyyy"}} {{time_convert(movie.runtime)}}</div>
                         <div>{{movie.overview}}</div><br>
                         <div>Protagonistas: {{movie.credits.cast[0].name}}</div>

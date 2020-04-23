@@ -7,7 +7,7 @@
 
 <header>
   <div class="headerLeft">
-    <img src="../../../assets/img/logo.png" class="logo" routerLink="" alt="">
+    <img src="../../../assets/img/logo.png" class="logo" routerLink="/movies" alt="">
     <p [matMenuTriggerFor]="menuGenres">Géneros</p>
     <mat-menu class="custom-class" #menuGenres="matMenu">
       <button mat-menu-item (click)="loadMoviesByGenre(genre)" *ngFor="let genre of genres">{{genre.name}}</button>

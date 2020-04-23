@@ -37,7 +37,10 @@ export class MovieService {
   getTrailer(movieId) {
     return this.httpClient.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?${this.api_key}&language=es-ES`)
   }
-  getActorsByQuery(query){
+  getActorsByQuery(query) {
     return this.httpClient.get(`http://api.tmdb.org/3/search/person?${this.api_key}&query=${query}`)
+  }
+  getMoviesByActorId(actorId) { 
+    return this.httpClient.get(`https://api.themoviedb.org/3/person/${actorId}?${this.api_key}&append_to_response=credits`) 
   }
 }

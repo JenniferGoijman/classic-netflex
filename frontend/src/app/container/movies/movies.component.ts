@@ -19,10 +19,11 @@ export class MoviesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.movieService.showPopularMovies = true;
-    this.movieService.showOrderMovies = true;
-    this.movieService.showBigTrailer = true;
-    this.movieService.showGenreMovies = false;
-    this.movieService.showSearchResults = false;
+    this.movieService.showPopularMovies==undefined?this.movieService.showPopularMovies=true:false;
+    this.movieService.showOrderMovies==undefined?this.movieService.showOrderMovies=true:false;
+    this.movieService.showBigTrailer==undefined?this.movieService.showBigTrailer=true:false;
+    // this.movieService.showGenreMovies = false;
+    // this.movieService.showSearchResults = false;
+    console.log(this.movieService.showPopularMovies)
   }
 }
