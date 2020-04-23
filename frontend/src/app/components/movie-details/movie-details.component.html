@@ -6,18 +6,19 @@
     <div>{{infoMovie.release_date | date:"yyyy"}} {{time_convert(infoMovie.runtime)}}</div>
     <div>{{infoMovie.overview}}</div>
 
-    <div class="for">
+    <div>
       <h4>Protagonistas:</h4>
-      <div *ngFor="let actor of infoMovie.credits.cast; let i=index">
-        <div class="item" *ngIf="i<5">{{actor.name}}</div>
-      </div>
+      <span *ngFor="let actor of infoMovie.credits.cast; let i=index">
+        <span *ngIf="i<5">{{actor.name}}<span *ngIf="i<4">, </span>
+        </span>
+      </span>
     </div>
 
     <div>
       <h4>Géneros:</h4>
-      <div *ngFor="let genre of infoMovie.genres">
-        <div>{{genre.name}}</div>
-      </div>
+      <span *ngFor="let genre of infoMovie.genres; let i=index">
+        <span>{{genre.name}}<span *ngIf="infoMovie.genres.length-1>i">, </span></span>
+      </span>
     </div>
 
     <p class="btnWantIt" (click)="addCart(infoMovie)">La quiero ya!</p>

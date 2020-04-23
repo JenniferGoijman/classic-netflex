@@ -25,7 +25,7 @@ export class BigTrailerComponent implements OnInit {
       this.movieService.getTrailer(movieId)
         .subscribe(res => {
           this.showTrailer = "https://www.youtube.com/embed/" + res['results'][0]['key'] + "?rel=0&autohide=1&mute=1&showinfo=0&autoplay=1";
-          console.log("RUNNING", this.showTrailer)
+          console.log("RUNNING", res)
           this.charged = true;
         }, error => console.error(error));
     }
