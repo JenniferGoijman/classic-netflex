@@ -21,8 +21,9 @@
     </mat-form-field>
     <img src="../../../assets/img/search.png" class="btnSearch" *ngIf="showImageSearch" alt="Búsqueda"
       (click)=showSearchInput()>
-    <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null">
+    <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null" *ngIf="userService['user']['role']=='customer'">
       <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
+    <p class="btnAdmin" routerLink="/admin" *ngIf="userService['user']['role']=='admin'">Admin</p>
     <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
       {{userService['user']['surname']}}</p>
     <mat-menu #menu="matMenu">

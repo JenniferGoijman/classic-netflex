@@ -11,6 +11,9 @@ export class UserService {
   private token: string = "";
   constructor(public httpClient: HttpClient) { }
 
+  getAll() {
+    return this.httpClient.get('http://localhost:3000/users')
+  }
   register(user: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users/register', user);
   }
@@ -29,12 +32,9 @@ export class UserService {
   getUser(): object {
     return this.user;
   }
-  getUserInfo(token: string): Observable<any> {
+  getUserInfo(token): Observable<any> {
     return this.httpClient.get('http://localhost:3000/users/info', {
       headers: { authorization: token }
     })
   }
-  // confirm(emailToken: string): Observable<any> {
-  //   return this.httpClient.get('http://localhost:3000/confirm/' + emailToken);
-  // }
 }

@@ -35,6 +35,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatStepperModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [BigTrailerComponent],
   bootstrap: [AppComponent]

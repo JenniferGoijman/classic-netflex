@@ -9,6 +9,7 @@ import { MoviesComponent } from './container/movies/movies.component';
 import { ProfileComponent } from './container/profile/profile.component';
 import { CartComponent } from './container/cart/cart.component';
 import { SearchMoviesActorsComponent } from './components/search-movies-actors/search-movies-actors.component';
+import { AdminComponent } from './container/admin/admin.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'cart', component: CartComponent },
   { path: 'search/:search', component: SearchMoviesActorsComponent },
+  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({

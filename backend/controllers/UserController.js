@@ -11,6 +11,11 @@ const {
 } = require('../config/config.json')[env];
 const transporter = require('../config/nodemailer');
 const UserController = {
+    getAll(req, res) {
+        User.findAll({
+            })
+            .then(users => res.send(users))
+    },
     async register(req, res) {
         try {
             const password = await bcrypt.hash(req.body.password, 9);
