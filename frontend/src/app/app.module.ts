@@ -36,6 +36,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { MatTableModule } from '@angular/material/table';
     GenreMoviesComponent,
     SearchMoviesActorsComponent,
     MovieDetailsComponent,
-    AdminComponent    
+    AdminComponent,
+    AdminUsersComponent,
+    AdminOrdersComponent    
   ],
   imports: [
     BrowserModule,
