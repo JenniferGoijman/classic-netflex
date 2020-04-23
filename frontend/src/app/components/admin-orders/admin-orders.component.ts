@@ -32,4 +32,9 @@ export class AdminOrdersComponent implements OnInit {
       }, error => console.error(error));
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
