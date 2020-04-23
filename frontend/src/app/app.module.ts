@@ -34,11 +34,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +76,8 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
     MatStepperModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule
   ],
   providers: [BigTrailerComponent],
   bootstrap: [AppComponent]

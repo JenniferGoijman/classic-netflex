@@ -1,1 +1,16 @@
-<p>admin-orders works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha</th>
+      <td mat-cell *matCellDef="let order"> {{order.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="movieId">
+      <th mat-header-cell *matHeaderCellDef> Pelicula </th>
+      <td mat-cell *matCellDef="let order"> {{order.movieId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="UserId">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let order"> {{order.UserId}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

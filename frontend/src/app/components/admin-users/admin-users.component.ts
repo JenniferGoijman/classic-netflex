@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 
+export interface User {
+  name: string;
+  surname: string;
+  email: string;
+  role: string;
+}
+
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
