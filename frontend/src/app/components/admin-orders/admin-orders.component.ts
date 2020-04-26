@@ -7,6 +7,7 @@ export interface Order {
   date: string;
   movieId: number;
   UserId: number;
+  status: number;
 }
 
 @Component({
@@ -18,7 +19,7 @@ export class AdminOrdersComponent implements OnInit {
   orders;
   Order= [];
   dataSource;
-  displayedColumns: string[] = ['date', 'movieId', 'UserId'];
+  displayedColumns: string[] = ['date', 'movieId', 'UserId', 'status'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   constructor(public orderService:OrderService) { }

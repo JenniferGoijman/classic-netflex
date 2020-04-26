@@ -30,7 +30,6 @@ import { registerLocaleData } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from '@angular/material/input';
-import { MatVideoModule } from 'mat-video';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
@@ -71,7 +70,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatVideoModule,
     MatPaginatorModule,
     MatBadgeModule,
     MatMenuModule,
