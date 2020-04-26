@@ -8,7 +8,7 @@
     "start:back": "cd backend && nodemon index.js",
     "start:front": "cd frontend && ng serve --open",
     "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm run build --aot"
   },
   "keywords": [],
   "author": "",
