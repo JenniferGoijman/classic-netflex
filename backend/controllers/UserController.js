@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');
 const env = process.env.NODE_ENV || 'development';
 const {
     jwt_secret,
-    API_URL
+    API_URL,
+    FRONT_URL
 } = require('../config/config.json')[env];
 const transporter = require('../config/nodemailer');
 const UserController = {
@@ -26,7 +27,8 @@ const UserController = {
             }, jwt_secret, {
                 expiresIn: '48h'
             });
-            const url = API_URL + '/users/confirmed/' + emailToken;
+            console.log(API_URL);
+            const url = API_URL + 'users/confirmed/' + emailToken;
             await transporter.sendMail({
                 to: email,
                 subject: 'Confirme su registro en Classic Netflex',
@@ -81,8 +83,7 @@ const UserController = {
                 token: authToken,
                 UserId: user.id
             });
-            
-            res.redirect('http://localhost:4200/user/confirmed/' + authToken);
+            res.redirect(FRONT_URL+'/user/confirmed/' + authToken);
 
         } catch (error) {
             console.error(error)

@@ -6,19 +6,10 @@
   "scripts": {
     "start": "concurrently \"npm run start:front\" \"npm run start:back\" ",
     "start:back": "cd backend && nodemon index.js",
-    "start:front": "cd frontend && ng serve --open",
-    "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
-    "heroku-postbuild": "cd frontend && npm run build --aot"
+    "start:front": "cd frontend && ng serve --open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0",
-    "mysql2": "^2.1.0",
-    "sequelize": "^5.21.7"
-  }
+  "dependencies": {}
 }

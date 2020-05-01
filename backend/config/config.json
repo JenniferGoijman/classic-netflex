@@ -1,0 +1,40 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "netflex",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": 0,
+    "jwt_secret":"ejemplo",
+    "API_URL": "http://localhost:4200/",
+    "GMAIL": {
+      "user": "classicnetflex@gmail.com",
+      "pass": "ClassicNetflex1."
+    },
+    "FRONT_URL":"http://localhost:27017"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "sql7336077",
+    "password": "B7Qm3hbIde",
+    "database": "sql7336077",
+    "host": "sql7.freemysqlhosting.net",
+    "dialect": "mysql",
+    "operatorsAliases": 0,
+    "jwt_secret":"ejemplo2",
+    "API_URL": "https://netflex-api.herokuapp.com/",
+    "GMAIL": {
+      "user": "classicnetflex@gmail.com",
+      "pass": "ClassicNetflex1."
+    },
+    "FRONT_URL":"https://classic-netflex.herokuapp.com"
+  }
+}

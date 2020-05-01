@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'users/confirm/:token', component: ConfirmedComponent },
+  { path: 'users/confirmed/:token', component: ConfirmedComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'cart', component: CartComponent },
