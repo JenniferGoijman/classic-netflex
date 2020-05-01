@@ -13,7 +13,6 @@ export class AppComponent {
 
   constructor(public userService: UserService, private router: Router) { }
 
-
   ngOnInit() {
     const token: string = localStorage.getItem('authToken');
     if (token) {

@@ -24,6 +24,5 @@ export class MoviesComponent implements OnInit {
     this.movieService.showBigTrailer==undefined?this.movieService.showBigTrailer=true:false;
     // this.movieService.showGenreMovies = false;
     // this.movieService.showSearchResults = false;
-    console.log(this.movieService.showPopularMovies)
   }
 }

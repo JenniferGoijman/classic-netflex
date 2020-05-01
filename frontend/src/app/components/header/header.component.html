@@ -8,8 +8,10 @@
 <header>
   <div class="headerLeft">
     <img src="../../../assets/img/logo.png" class="logo" routerLink="/movies" alt="">
-    <p (click)="loadMoviesHome()">Inicio</p>
-    <p [matMenuTriggerFor]="menuGenres">Géneros</p>
+    <p (click)="loadMoviesHome()" *ngIf="(router.url !== '/' && router.url !== '/login' && router.url !== '/register')">
+      Inicio</p>
+    <p [matMenuTriggerFor]="menuGenres"
+      *ngIf="(router.url !== '/' && router.url !== '/login' && router.url !== '/register')">Géneros</p>
     <mat-menu class="custom-class" #menuGenres="matMenu">
       <button mat-menu-item (click)="loadMoviesByGenre(genre)" *ngFor="let genre of genres">{{genre.name}}</button>
     </mat-menu>
@@ -17,12 +19,14 @@
   <div class="headerRight">
     <mat-form-field class="inputSearch" *ngIf="showInputSearch">
       <mat-icon matPrefix><img src="../../../assets/img/search.png" class="btnSearchIcon" alt="Búsqueda"></mat-icon>
-      <input matInput type="search" #search class="search-input" 
-        (blur)="hideSearchInput()" (keyup)="searchMoviesActors()" (input)="searchMoviesActors()">
+      <input matInput type="search" #search class="search-input" (blur)="hideSearchInput()"
+        (keyup)="searchMoviesActors()" (input)="searchMoviesActors()">
     </mat-form-field>
-    <img src="../../../assets/img/search.png" class="btnSearch" *ngIf="showImageSearch" alt="Búsqueda"
-      (click)=showSearchInput()>
-    <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null" *ngIf="userService['user']['role']=='customer'">
+    <img src="../../../assets/img/search.png" class="btnSearch"
+      *ngIf="showImageSearch && (router.url !== '/' && router.url !== '/login' && router.url !== '/register')"
+      alt="Búsqueda" (click)=showSearchInput()>
+    <span matBadgeColor="warn" [matBadge]="this.cartService.moviesInCart?.length || null"
+      *ngIf="userService['user']['role']=='customer'">
       <img src="../../../assets/img/cart.png" routerLink="/cart" class="btnCart" alt="Carrito"></span>
     <p class="btnAdmin" routerLink="/admin" *ngIf="userService['user']['role']=='admin'">Admin</p>
     <p class="btnUser" [matMenuTriggerFor]="menu" *ngIf="userService['user']">{{userService['user']['name']}}
@@ -31,6 +35,8 @@
       <button mat-menu-item routerLink="/profile">Mi cuenta</button>
       <button mat-menu-item (click)="logOut()">Cerrar sesión</button>
     </mat-menu>
-    <p class="btnLogin" routerLink="/login" *ngIf="!userService['user']['role']">Iniciar sesión</p>
+    <p class="btnLogin" routerLink="/login"
+      *ngIf="(!userService['user']['role'] && router.url !== '/login' && router.url !== '/register')">Iniciar
+      sesión</p>
   </div>
 </header>

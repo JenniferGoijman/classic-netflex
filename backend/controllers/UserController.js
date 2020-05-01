@@ -13,8 +13,7 @@ const {
 const transporter = require('../config/nodemailer');
 const UserController = {
     getAll(req, res) {
-        User.findAll({
-            })
+        User.findAll({})
             .then(users => res.send(users))
     },
     async register(req, res) {
@@ -27,16 +26,22 @@ const UserController = {
             }, jwt_secret, {
                 expiresIn: '48h'
             });
-            console.log(API_URL);
             const url = API_URL + 'users/confirmed/' + emailToken;
             await transporter.sendMail({
                 to: email,
                 subject: 'Confirme su registro en Classic Netflex',
+                attachments: [{
+                    filename: 'logo.png',
+                    path: './public/logo.png',
+                    cid: 'logo'
+                }],
                 html: `
+                <img src="cid:logo">
                 <h3>Bienvenido/a ${req.body.name} ${req.body.surname} a Classic Netflex!</h3>
                 <h2>Estás a un paso de registrarte</h2>
-                <a href="${url}">Click aquí para confirmar tu registro</a>
-                Este enlace caduca en 48 horas.
+                <h4>Haz click a continuación para confirmar tu registro</h4> <br>
+                <a href="${url}" style="text-decoration:none; background-color:#e50914; color:white; width:120px; border-radius:4px; text-align:center; padding:8px 8px; cursor:pointer; margin-left:60px;">Iniciar sesión</a><br>
+                <h5 style="margin-left:30px;">Este enlace caduca en 48 horas.</h5>
                 `
             });
             const user = await User.create({
@@ -83,7 +88,7 @@ const UserController = {
                 token: authToken,
                 UserId: user.id
             });
-            res.redirect(FRONT_URL+'/user/confirmed/' + authToken);
+            res.redirect(FRONT_URL + '/users/confirmed/' + authToken);
 
         } catch (error) {
             console.error(error)

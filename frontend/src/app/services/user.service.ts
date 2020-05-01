@@ -10,6 +10,7 @@ export class UserService {
 
   private user: object = {};
   private token: string = "";
+  
   constructor(public httpClient: HttpClient) { }
 
   getAll() {

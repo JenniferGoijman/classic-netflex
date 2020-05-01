@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     this.getGenres();
     this.showInputSearch = false;
     this.showImageSearch = true;
-    console.log(this.movieService)
+    console.log(this.router)
   }
 
   searchMoviesActors() {
