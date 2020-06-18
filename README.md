@@ -2,7 +2,7 @@
 
 This was my fifth coding Bootcamp project: a videoclub.
 
-It was made with Angular, TypeScript, Bootstrap, NodeJS, ExpressJS & MySQL.
+It was made with Angular, TypeScript, Material, NodeJS, ExpressJS & MySQL.
 
 ## Views
 
