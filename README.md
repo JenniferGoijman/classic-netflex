@@ -1,13 +1,5 @@
 # Classic-Netflex
 
-### Get started
+This was my fifth coding Bootcamp project: a videoclub.
 
-In the backend folder you need to install:
-```
-npm i express sequelize mysql2 bcryptjs jsonwebtoken
-```
-
-In the frontend folder you need to install:
-```
-npm install @angular/cli
-```
+It was made with Angular, TypeScript, Bootstrap, NodeJS, ExpressJS & MySQL.
